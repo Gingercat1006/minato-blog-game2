@@ -1,0 +1,257 @@
+/* frontend/src/index.css */
+
+/*
+  blog-owner: Minato
+  favorite_element: aqua
+  - A little easter egg for visitors :)
+*/
+
+/* --- 基本設定 --- */
+body {
+    font-family: "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    background-color: #f9f9f9; 
+}
+
+a {
+    color: #0066cc;
+    text-decoration: underline;
+}
+a:hover {
+    color: #ff6600;
+}
+
+/* --- 全体レイアウト --- */
+#container {
+    width: 980px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* --- 1. ヘッダー --- */
+#header {
+    padding: 20px;
+    border-bottom: 3px solid #e0f0ff;
+}
+#header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+#header h1 a {
+    color: #333;
+    text-decoration: none;
+}
+#header p {
+    margin: 5px 0 0;
+    font-size: 13px;
+    color: #666;
+}
+.header-image {
+    width: 100%;
+    height: 250px;
+    background-image: url('/images/header-jellyfish.jpg');
+    background-size: cover;
+    background-position: center;
+    margin-top: 15px;
+}
+
+/* --- メインラッパー --- */
+#main-wrapper {
+    display: flex;
+    padding: 20px;
+}
+
+/* --- 2. 記事エリア --- */
+#content {
+    width: 70%;
+    padding-right: 20px;
+    box-sizing: border-box; /* paddingが幅に影響しないように */
+}
+.post {
+    margin-bottom: 30px;
+}
+.article-title {
+    font-size: 22px;
+    color: #333;
+    border-bottom: 2px dashed #ccc;
+    padding-bottom: 5px;
+    margin-top: 0;
+}
+.article-meta {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 20px;
+}
+.article-body p {
+    margin-bottom: 1.5em;
+}
+
+/* --- 3. サイドバー --- */
+#sidebar {
+    width: 30%;
+}
+.widget {
+    margin-bottom: 25px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.widget-title {
+    font-size: 16px;
+    margin: 0;
+    padding: 10px;
+    background-color: #e0f0ff;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    border-radius: 5px 5px 0 0;
+}
+.widget-body {
+    padding: 15px;
+}
+.widget-list {
+    list-style-type: "» ";
+    padding-left: 20px;
+    margin: 0;
+}
+.widget-list li {
+    margin-bottom: 8px;
+}
+
+/* プロフィールウィジェット */
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 10px;
+    border: 3px solid #eee;
+}
+.profile-name {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: #0066cc;
+}
+.profile-bio {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* --- 4. フッター --- */
+#footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    font-size: 12px;
+    color: #aaa;
+}
+
+/* --- パスワードプロンプト用のスタイル --- */
+.password-prompt {
+    border: 2px dashed #ff8c00;
+    padding: 20px;
+    margin-top: 30px;
+    background: #fffaf0;
+}
+.password-prompt input {
+    padding: 8px;
+}
+.password-prompt button {
+    margin-left: 10px;
+    padding: 8px;
+    cursor: pointer;
+}
+.password-prompt .error {
+    color: red;
+}
+
+/* --- 最終分岐用のスタイル --- */
+.final-choice {
+    margin-top: 50px;
+    border: 2px solid red;
+    padding: 20px;
+    text-align: center;
+}
+.final-choice button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+/* --- エンディング画面 --- */
+.ending-container {
+    height: 100vh;
+    background: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ending-content {
+    max-width: 600px;
+    text-align: center;
+}
+.ending-content p {
+    white-space: pre-wrap;
+    line-height: 1.7;
+}
+.ending-content a {
+    color: #4a90e2;
+    margin-top: 30px;
+    display: inline-block;
+}
+
+/* --- ヒント表示用のスタイル --- */
+.hint-container {
+    margin-top: 20px;
+    text-align: center;
+}
+.hint-button {
+    cursor: pointer;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+}
+.hint-box {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 10px;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+/* --- 最終分岐 演出用スタイル (修正後) --- */
+.glitch-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none; /* ★★★ これが重要。「クリックを通り抜けさせる」設定 ★★★ */
+  transition: opacity 1s ease;
+}
+
+.glitch-overlay.active {
+  opacity: 1;
+  pointer-events: auto; /* ★★★ 演出が始まったら、再びクリックを受け止めるようにする ★★★ */
+}
+
+.final-choice.active {
+  /* ...既存のスタイル... */
+  position: relative;
+  z-index: 100;
+  /* activeクラスが付いたら即座に表示されるように */
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeIn 1s ease-in;
+}
