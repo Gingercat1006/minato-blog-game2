@@ -43,6 +43,7 @@ const PasswordPrompt = ({ articleId, hint, onCorrectPassword }) => {
           onChange={(e) => setPassword(e.target.value)}
           autoFocus
           placeholder="パスワードを入力"
+          autoComplete="new-password"
         />
         <button type="submit">解除</button>
       </form>
