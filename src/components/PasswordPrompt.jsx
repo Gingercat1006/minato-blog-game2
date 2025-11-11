@@ -3,10 +3,17 @@ import React, {useState} from 'react';
 // ClickableHintはもう不要なので、インポートしません
 
 // パスワードをBase64形式で難読化しておく
+// src/components/PasswordPrompt.jsx の中
+// ★★★ 復讐劇バージョンの、新しいパスワードリスト ★★★
 const encodedPasswords = {
-  '6': 'a2FzdW1pY2hvdQ==', // "kasumichou"
-  '7': 'YXF1YQ==',         // "aqua"
-  '8': 'MTEwNw=='          // "1107"
+  '6': 'a2FzdW1pY2hvdQ==',    // kasumichou
+  '7': 'aXpha2F5YV90c3VraQ==',    // izakaya_tsuki
+  '8': 'cw==',                // s
+  '9': 'MjAx',                // 201
+  '10': 'dA==',               // t
+  '11': 'YW9p',               // aoi (青い)
+  '12': 'MTEwNw==',           // 1107
+  '13': 'a3VyYWdl',            // kurage (クラゲ)
 };
 
 const PasswordPrompt = ({ articleId, hint, onCorrectPassword }) => {
