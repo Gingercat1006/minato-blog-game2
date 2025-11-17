@@ -38,11 +38,15 @@ const ArticlePage = () => {
         <p className="article-meta">
           <time>{article.date} 10:00:00</time> | <span className="category">{article.theme}</span>
         </p>
-        <div className="article-body" onClick={handleFinalArticleClick}>
+
+        {/* ★★★ ここからが、最後の、そして、最も重要な、修正です ★★★ */}
+        <div className="article-body">
           {showContent ? (
-            <div>
+            // 本文が表示されている時だけ、クリックイベントを仕掛ける
+            <div onClick={handleFinalArticleClick}>
               <p style={{ whiteSpace: 'pre-wrap' }}>{article.content}</p>
               {article.image && <img src={article.image} alt="記事の画像" style={{ maxWidth: '300px', border: '1px solid #ccc', marginTop: '15px' }}/>}
+              
               {article.isFinal && (
                 !showFinalChoice ? (
                   <div style={{ border: '1px dashed #999', padding: '10px', marginTop: '20px', textAlign: 'center', color: '#777' }}>
@@ -58,12 +62,12 @@ const ArticlePage = () => {
               )}
             </div>
           ) : (
+            // パスワード画面には、クリックイベントは仕掛けない
             <PasswordPrompt articleId={articleId} hint={article.hint} onCorrectPassword={handleCorrectPassword} />
           )}
         </div>
+        {/* ★★★ ここまでが、最後の、そして、最も重要な、修正です ★★★ */}
 
-        {/* ★★★ ここが、最後の修正です ★★★ */}
-        {/* ナビゲーションを、article-bodyの外に出し、常に表示されるようにします */}
         <div className="article-navigation">
           {prevArticle ? (
             <Link to={`/article/${prevArticle.id}`}>&laquo; 前の記事へ: {prevArticle.title}</Link>
