@@ -12,7 +12,7 @@ const encodedAnswers = {
   '8': ['c2F0b3U='],               // "satou"
   '9': ['bWl5YWtl'],               // "miyake"
   '10': ['MjAx'],              // "201"
-  '11': ['YW9p'],              // "aoi"
+  '11': ['b3JpdG8='],              // "orito"
   '12': ['MTEwNw=='],          // "1107"
   '13': ['a3VyYWdl'],           // "kurage"
 };
