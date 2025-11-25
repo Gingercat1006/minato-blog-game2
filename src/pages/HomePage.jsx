@@ -23,7 +23,7 @@ const truncateText = (text, length) => {
 
 
 const HomePage = () => {
-  const allArticles = Object.values(articles);
+  const allArticles = Object.values(articles).filter(article => !article.isFinal);
   const sortedArticles = allArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (

@@ -2,10 +2,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { articles } from '../data/gameData';
-
+import Calendar from './Calendar';
 const Sidebar = () => {
   // ★★★ 全ての記事を、対象にします ★★★
-  const allArticles = Object.values(articles);
+  const allArticles = Object.values(articles).filter(article => !article.isFinal);
   // 記事IDの降順（新しい順）に並び替える
   const sortedArticles = allArticles.sort((a, b) => b.id - a.id);
 
@@ -42,10 +42,10 @@ const Sidebar = () => {
       {/* --- カレンダーウィジェット (変更なし) --- */}
       <div className="widget calendar-widget">
         <h3 className="widget-title">過去ログ</h3>
-        <div className="widget-body"><p>（ここにカレンダーUI）</p></div>
+        <div className="widget-body"><Calendar /> {/* ★★★ ここで、魔法使いを召喚します ★★★ */}
+        </div>
       </div>
     </aside>
   );
 };
-
 export default Sidebar;
