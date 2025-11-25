@@ -342,3 +342,47 @@ a:hover {
     background-color: #0066cc;
     color: #fff;
   }
+
+  /* src/index.css の一番下に追加 */
+
+/* --- レスポンシブデザイン（スマートフォン対応） --- */
+
+/* 画面の横幅が768px以下の場合に、この中のルールが適用される */
+@media (max-width: 768px) {
+
+    /* --- 1. 全体レイアウトをしなやかにする --- */
+    #container {
+      width: 100%; /* 横幅を、画面いっぱいに広げる */
+      margin: 0;   /* 左右の余白をなくす */
+      border: none;/* 枠線をなくす */
+      box-shadow: none; /* 影をなくす */
+    }
+  
+    /* --- 2. メインエリアとサイドバーを、縦に並べる --- */
+    #main-wrapper {
+      flex-direction: column; /* 横並びから、縦並びに変更 */
+      padding: 15px;
+    }
+    #content {
+      width: 100%; /* 横幅を、100%に */
+      padding-right: 0;
+    }
+    #sidebar {
+      width: 100%; /* 横幅を、100%に */
+      margin-top: 30px; /* 上の記事との間に、余白を作る */
+    }
+  
+    /* --- 3. 文字や画像のサイズを、読みやすく調整する --- */
+    body {
+      font-size: 15px; /* 全体の文字を、少しだけ大きくする */
+    }
+    #header h1 {
+      font-size: 24px;
+    }
+    .article-title {
+      font-size: 20px;
+    }
+    .header-image {
+      height: 180px; /* ヘッダー画像を、少しだけ、小さくする */
+    }
+  }
