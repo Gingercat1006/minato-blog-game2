@@ -3,18 +3,18 @@ import React, { useState } from 'react';
 
 // 全ての正解パスワード（通常＋揺らぎ許容）を、難読化して、ここに、ただ一つ、集約する
 const encodedAnswers = {
-  '6': [
+  'weiffd': [
     'a2FzdW1pY2hvdQ==', 
     'a2FzdW1pdHlvdQ==', 
     'a2FzdW1pY3lvdQ==', 
   ],
-  '7': ['d2hhbGU='],           
-  '8': ['c2F0b3U='],               
-  '9': ['bWl5YWtl'],               
-  '10': ['MjAx'],              
-  '11': ['b3JpdG8='],             
-  '12': ['MTEwNw=='],          
-  '13': ['a3VyYWdl'],           
+  '47reuyecb': ['d2hhbGU='],           
+  'z.lsd': ['c2F0b3U='],               
+  'yurtuyroi': ['bWl5YWtl'],               
+  'iuyerewv': ['MjAx'],              
+  'pa;xa': ['b3JpdG8='],             
+  'sdjkjklklj': ['MTEwNw=='],          
+  'jdfhsj': ['a3VyYWdl'],           
 };
 
 const PasswordPrompt = ({ articleId, hint, onCorrectPassword }) => {

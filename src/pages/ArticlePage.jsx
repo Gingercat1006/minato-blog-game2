@@ -31,7 +31,7 @@ const ArticlePage = () => {
       <div className={`glitch-overlay ${showFinalChoice ? 'active' : ''}`}></div>
       <article className="post">
         <h2 className="article-title">{showContent ? article.title : article.theme}</h2>
-        <p className="article-meta"><time>{article.date} 10:00:00</time> | <span className="category">{article.theme}</span></p>
+        <p className="article-meta"><time>{article.date}</time> | <span className="category">{article.theme}</span></p>
         
         <div className="article-body">
           {showContent ? (
