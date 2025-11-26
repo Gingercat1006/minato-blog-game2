@@ -294,29 +294,7 @@ a:hover {
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     cursor: pointer;
   }
-  /* src/index.css の、一番下の部分を、これに置き換えてください */
 
-/* --- カレンダーウィジェット用のスタイル (最終版) --- */
-.calendar-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px;
-  }
-  .calendar-table th,
-  .calendar-table td {
-    text-align: center;
-    padding: 5px 0;
-  }
-  .calendar-table thead tr:first-child th {
-    background-color: #e0f0ff;
-    font-size: 14px;
-    position: relative;
-  }
-  .calendar-table thead tr:last-child th {
-    background-color: #f0f0f0;
-    font-weight: normal;
-  }
-  
   /* ナビゲーションボタンのデザイン */
   .calendar-nav-button {
     background: none;

@@ -1,7 +1,7 @@
 // src/pages/IntroPage.jsx (新規作成)
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './IntroPage.css'; // あとで、この専用のCSSも作ります
+import './IntroPage.css';
 
 const IntroPage = () => {
   return (

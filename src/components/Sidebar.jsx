@@ -1,17 +1,14 @@
-// src/components/Sidebar.jsx (改装後)
+// src/components/Sidebar.jsx (★★★★★ 究極の最終形態 ★★★★★)
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { articles } from '../data/gameData';
-import Calendar from './Calendar';
+
 const Sidebar = () => {
-  // ★★★ 全ての記事を、対象にします ★★★
   const allArticles = Object.values(articles).filter(article => !article.isFinal);
-  // 記事IDの降順（新しい順）に並び替える
-  const sortedArticles = allArticles.sort((a, b) => b.id - a.id);
+  const sortedArticles = allArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (
     <aside id="sidebar">
-      {/* --- プロフィールウィジェット (変更なし) --- */}
       <div className="widget profile-widget">
         <h3 className="widget-title">プロフィール</h3>
         <div className="widget-body">
@@ -22,16 +19,13 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {/* ★★★「最新記事」ウィジェットを、改装 ★★★ */}
       <div className="widget latest-articles-widget">
         <h3 className="widget-title">全ての記事</h3>
         <ul className="widget-list">
-          {/* 新しい順に並べた記事のリストを生成 */}
           {sortedArticles.map(article => (
             <li key={article.id}>
               <Link to={`/home/article/${article.id}`}>
                 {article.title}
-                {/* ★★★ 保護された記事には、鍵マークを表示します ★★★ */}
                 {article.isProtected && <span style={{ marginLeft: '5px', color: '#999' }}>[鍵]</span>}
               </Link>
             </li>
@@ -39,13 +33,10 @@ const Sidebar = () => {
         </ul>
       </div>
       
-      {/* --- カレンダーウィジェット (変更なし) --- */}
-      <div className="widget calendar-widget">
-        <h3 className="widget-title">過去ログ</h3>
-        <div className="widget-body"><Calendar /> {/* ★★★ ここで、魔法使いを召喚します ★★★ */}
-        </div>
-      </div>
+      {/* ★★★ カレンダーウィジェットの、全ての記憶を、ここから、完全に、消し去ります ★★★ */}
+
     </aside>
   );
 };
+
 export default Sidebar;
