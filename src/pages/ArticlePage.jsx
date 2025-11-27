@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import PasswordPrompt from '../components/PasswordPrompt';
-import ContentRenderer from '../components/ContentRenderer'; // ← ★★★ 天才書記官を、呼び出すことを、思い出します ★★★
+import ContentRenderer from '../components/ContentRenderer';
 import FinalChoice from '../components/FinalChoice';
 import { useArticleNavigation } from '../hooks/useArticleNavigation';
 import { articles } from '../data/gameData';
@@ -23,22 +23,29 @@ const ArticlePage = () => {
   const handleCorrectPassword = (id) => setUnlocked({ ...unlocked, [id]: true });
   const handleFinalArticleClick = () => { if (article?.isFinal) setShowFinalChoice(true); };
 
-  if (!article) return <p>記事が見つかりません。<Link to="/">ブログのトップへ</Link></p>;
+  if (!article) {
+    return (
+      <article className="post">
+        <h2 className="article-title">記事が見つかりません</h2>
+        <div className="article-body">
+          <Link to="/home">ブログのトップへ戻る</Link>
+        </div>
+      </article>
+    );
+  }
+  
   const showContent = !article.isProtected || unlocked[articleId];
 
   return (
     <>
       <div className={`glitch-overlay ${showFinalChoice ? 'active' : ''}`}></div>
       <article className="post">
-        <h2 className="article-title">{showContent ? article.title : article.theme}</h2>
+        <h2 className="article-title">{article.title}</h2>
         <p className="article-meta"><time>{article.date}</time> | <span className="category">{article.theme}</span></p>
         
         <div className="article-body">
           {showContent ? (
             <div onClick={handleFinalArticleClick}>
-              
-              {/* ★★★ ここが、最後の、そして、最も重要な、修正です ★★★ */}
-              {/* ★★★ 天才書記官に、仕事の全てを、委ねます ★★★ */}
               <ContentRenderer content={article.content} />
               
               {article.isFinal && !showFinalChoice && (
@@ -58,12 +65,11 @@ const ArticlePage = () => {
 
         <FinalChoice isVisible={showFinalChoice} />
         
-        {showContent && (
-          <div className="article-navigation">
-            {prevArticle && <Link to={`/home/article/${prevArticle.id}`}>&laquo; 前の記事へ: {prevArticle.title}</Link>}
-            {nextArticle && <Link to={`/home/article/${nextArticle.id}`} style={{ marginLeft: 'auto' }}>次の記事へ: {nextArticle.title} &raquo;</Link>}
-          </div>
-        )}
+        {/* ★★★ 時の羅針盤は、常に、ここに、存在します ★★★ */}
+        <div className="article-navigation">
+          {prevArticle && <Link to={`/home/article/${prevArticle.id}`}>&laquo; 前の記事へ: {prevArticle.title}</Link>}
+          {nextArticle && <Link to={`/home/article/${nextArticle.id}`} style={{ marginLeft: 'auto' }}>次の記事へ: {nextArticle.title} &raquo;</Link>}
+        </div>
       </article>
     </>
   );

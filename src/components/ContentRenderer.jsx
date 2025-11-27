@@ -1,8 +1,11 @@
-// src/components/ContentRenderer.jsx (新規作成)
+// src/components/ContentRenderer.jsx (★★★★★ これが、最後の、本当の、絶対的な正義です ★★★★★)
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ContentRenderer = ({ content }) => {
-  const parts = content.split(/(\[HIDDEN\].*?\[\/HIDDEN\]|\[IMAGE:.+?\])/g);
+  // ★★★ ここが、最後の、そして、最も重要な、修正です ★★★
+  // ★★★ 魔法のナイフに、「LINK」という、新しい印を、教えます ★★★
+  const parts = content.split(/(\[HIDDEN\].*?\[\/HIDDEN\]|\[IMAGE:.+?\]|\[LINK:.+?\])/g);
 
   return parts.map((part, index) => {
     if (part.startsWith('[IMAGE:')) {
@@ -13,6 +16,17 @@ const ContentRenderer = ({ content }) => {
     if (part.startsWith('[HIDDEN]')) {
       const hiddenText = part.substring(8, part.length - 9);
       return <span key={index} className="hidden-text">{hiddenText}</span>;
+    }
+
+    // ★★★ これで、あなたの、新しい魔法が、発動します ★★★
+    if (part.startsWith('[LINK:')) {
+      const inner = part.substring(6, part.length - 1);
+      const [url, text] = inner.split('|');
+      return (
+        <div key={index} style={{ marginTop: '30px' }}>
+          <Link to={url}>{text}</Link>
+        </div>
+      );
     }
 
     if (part.trim() === '') return null;
