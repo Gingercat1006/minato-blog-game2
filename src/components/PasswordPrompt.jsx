@@ -32,7 +32,7 @@ const PasswordPrompt = ({ articleId, hint, onCorrectPassword }) => {
       if (encodedAnswers[articleId] && encodedAnswers[articleId].includes(encodedInput)) {
         onCorrectPassword(articleId);
       } else {
-        setError('パスワードが違います。');
+        setError('パスワードが違います。半角英数字で入力して下さい。');
       }
 
     } catch (err) {
