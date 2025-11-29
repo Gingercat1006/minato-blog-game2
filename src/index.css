@@ -1,15 +1,15 @@
-/* frontend/src/index.css */
+/* ==========================================================================
+   1. 基本設定 (Reset, Fonts & Base Styles)
+   ========================================================================== */
 
 /*
   blog-owner: Minato
   favorite_element: aqua
   - A little easter egg for visitors :)
 */
-/* src/index.css の、一番上に追加 */
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
 
-/* ... 以下、既存のCSS ... */
-/* --- 基本設定 --- */
 body {
     font-family: "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
     margin: 0;
@@ -27,7 +27,10 @@ a:hover {
     color: #ff6600;
 }
 
-/* --- 全体レイアウト --- */
+/* ==========================================================================
+   2. 全体レイアウト (Layout)
+   ========================================================================== */
+
 #container {
     width: 980px;
     margin: 20px auto;
@@ -36,7 +39,34 @@ a:hover {
     box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 
-/* --- 1. ヘッダー --- */
+#main-wrapper {
+    display: flex;
+    padding: 20px;
+}
+
+#content {
+    width: 70%;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+#sidebar {
+    width: 30%;
+}
+
+#footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    font-size: 12px;
+    color: #aaa;
+}
+
+/* ==========================================================================
+   3. コンポーネント (Components)
+   ========================================================================== */
+
+/* --- 3.1 ヘッダー --- */
 #header {
     padding: 20px;
     border-bottom: 3px solid #e0f0ff;
@@ -63,18 +93,7 @@ a:hover {
     margin-top: 15px;
 }
 
-/* --- メインラッパー --- */
-#main-wrapper {
-    display: flex;
-    padding: 20px;
-}
-
-/* --- 2. 記事エリア --- */
-#content {
-    width: 70%;
-    padding-right: 20px;
-    box-sizing: border-box; /* paddingが幅に影響しないように */
-}
+/* --- 3.2 記事 (Article & Post) --- */
 .post {
     margin-bottom: 30px;
 }
@@ -93,11 +112,67 @@ a:hover {
 .article-body p {
     margin-bottom: 1.5em;
 }
-
-/* --- 3. サイドバー --- */
-#sidebar {
-    width: 30%;
+.article-navigation {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
 }
+.article-navigation a {
+    color: #0066cc;
+    text-decoration: none;
+}
+.article-navigation a:hover {
+    text-decoration: underline;
+    color: #ff6600;
+}
+
+/* --- 3.3 記事一覧 (Article List) --- */
+.theme-article-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.theme-article-list li {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px dotted #ccc;
+}
+
+/* ★★★ ここからが、最後の、そして、最も重要な、修正です ★★★ */
+
+.theme-article-list .article-meta {
+  margin: 0 0 8px 0;
+  /* article-metaの、基本スタイルを、ここで、継承します */
+  font-size: 12px;
+  color: #888;
+}
+
+.theme-article-list a {
+  font-size: 20px;
+  text-decoration: none;
+  color: #0066cc;
+  font-weight: bold;
+}
+
+.theme-article-list a span { /* 鍵マークのスタイル */
+  margin-left: 10px;
+  color: #999;
+  font-weight: bold; /* 鍵マークは、太字にしない */
+}
+
+.theme-article-list p {
+  margin: 8px 0 0;
+  color: #666;
+}
+
+.theme-article-list p[style*="italic"] { /* 保護された記事の、特別なpタグ */
+  font-style: italic;
+}
+
+/* --- 3.4 サイドバー・ウィジェット (Widget) --- */
 .widget {
     margin-bottom: 25px;
     border: 1px solid #ddd;
@@ -124,7 +199,7 @@ a:hover {
     margin-bottom: 8px;
 }
 
-/* プロフィールウィジェット */
+/* --- 3.5 プロフィール (Profile) --- */
 .profile-image {
     width: 100px;
     height: 100px;
@@ -145,16 +220,12 @@ a:hover {
     margin-bottom: 15px;
 }
 
-/* --- 4. フッター --- */
-#footer {
-    text-align: center;
-    padding: 20px;
-    border-top: 1px solid #eee;
-    font-size: 12px;
-    color: #aaa;
-}
 
-/* --- パスワードプロンプト用のスタイル --- */
+/* ==========================================================================
+   4. ゲーム特有のギミック (Game Gimmicks)
+   ========================================================================== */
+
+/* --- 4.1 パスワードプロンプト --- */
 .password-prompt {
     border: 2px dashed #ff8c00;
     padding: 20px;
@@ -173,7 +244,30 @@ a:hover {
     color: red;
 }
 
-/* --- 最終分岐用のスタイル --- */
+/* --- 4.2 ヒント表示 --- */
+.hint-box {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 20px;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+/* --- 4.3 隠し文字 --- */
+.hidden-text {
+    color: #ffffff; 
+    transition: color 0.2s;
+}
+.hidden-text::selection {
+    color: #333;
+    background: #e0f0ff;
+}
+.hidden-text:hover {
+    cursor: text;
+}
+
+/* --- 4.4 最終分岐 --- */
 .final-choice {
     margin-top: 50px;
     border: 2px solid red;
@@ -185,8 +279,36 @@ a:hover {
     margin: 0 10px;
     cursor: pointer;
 }
+.glitch-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 99;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+.glitch-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.final-choice.active {
+    position: relative;
+    z-index: 100;
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeIn 1s ease-in;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
-/* --- エンディング画面 --- */
+
+/* --- 4.5 エンディング画面 --- */
 .ending-container {
     height: 100vh;
     background: black;
@@ -209,161 +331,43 @@ a:hover {
     display: inline-block;
 }
 
-/* --- ヒント表示用のスタイル --- */
-.hint-container {
-    margin-top: 20px;
-    text-align: center;
-}
-.hint-button {
-    cursor: pointer;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    background-color: #f7f7f7;
-    border-radius: 4px;
-}
-.hint-box {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-top: 10px;
-    display: inline-block;
-    border-radius: 4px;
-}
 
-/* --- 最終分岐 演出用スタイル (修正後) --- */
-.glitch-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 99;
-  opacity: 0;
-  pointer-events: none; /* ★★★ これが重要。「クリックを通り抜けさせる」設定 ★★★ */
-  transition: opacity 1s ease;
-}
+/* ==========================================================================
+   5. レスポンシブデザイン (Responsive Design)
+   ========================================================================== */
 
-.glitch-overlay.active {
-  opacity: 1;
-  pointer-events: auto; /* ★★★ 演出が始まったら、再びクリックを受け止めるようにする ★★★ */
-}
-
-.final-choice.active {
-  /* ...既存のスタイル... */
-  position: relative;
-  z-index: 100;
-  /* activeクラスが付いたら即座に表示されるように */
-  opacity: 1;
-  transform: translateY(0);
-  animation: fadeIn 1s ease-in;
-}
-
-/* --- 記事の前後ナビゲーション用のスタイル --- */
-.article-navigation {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-  }
-  
-  .article-navigation a {
-    color: #0066cc;
-    text-decoration: none;
-  }
-  
-  .article-navigation a:hover {
-    text-decoration: underline;
-    color: #ff6600;
-  }
-  /* src/index.css の一番下に追加 */
-
-/* --- 隠し文字用のスタイル --- */
-.hidden-text {
-    /* 背景色と同じ色にすることで、見えなくする */
-    color: #ffffff; 
-    /* プレイヤーがマウスで選択（ドラッグ）した時に、文字が見えるようになる */
-    transition: color 0.2s;
-  }
-  
-  /* マウスカーソルを乗せた時に、ほんの少しだけ、ヒントを与える（任意） */
-  .hidden-text:hover {
-    /* ほんの少しだけ、影をつけて、そこに「何か」があることを示唆する */
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-  }
-
-  /* ナビゲーションボタンのデザイン */
-  .calendar-nav-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    color: #333;
-  }
-  .calendar-nav-button:hover {
-    color: #0066cc;
-  }
-  
-  /* ★★★ 黄色い背景を、完全に、削除します ★★★ */
-  .calendar-table td.has-post {
-    font-weight: bold; /* 投稿のある日は、太字にするだけ */
-  }
-  
-  /* 投稿のある日の、リンクのデザイン */
-  .calendar-table td.has-post a {
-    display: block; /* クリック範囲を、セル全体に広げます */
-    text-decoration: none;
-    color: #0066cc;
-    border-radius: 3px;
-  }
-  .calendar-table td.has-post a:hover {
-    background-color: #0066cc;
-    color: #fff;
-  }
-
-  /* src/index.css の一番下に追加 */
-
-/* --- レスポンシブデザイン（スマートフォン対応） --- */
-
-/* 画面の横幅が768px以下の場合に、この中のルールが適用される */
 @media (max-width: 768px) {
-
-    /* --- 1. 全体レイアウトをしなやかにする --- */
-    #container {
-      width: 100%; /* 横幅を、画面いっぱいに広げる */
-      margin: 0;   /* 左右の余白をなくす */
-      border: none;/* 枠線をなくす */
-      box-shadow: none; /* 影をなくす */
-    }
-  
-    /* --- 2. メインエリアとサイドバーを、縦に並べる --- */
-    #main-wrapper {
-      flex-direction: column; /* 横並びから、縦並びに変更 */
-      padding: 15px;
-    }
-    #content {
-      width: 100%; /* 横幅を、100%に */
-      padding-right: 0;
-    }
-    #sidebar {
-      width: 100%; /* 横幅を、100%に */
-      margin-top: 30px; /* 上の記事との間に、余白を作る */
-    }
-  
-    /* --- 3. 文字や画像のサイズを、読みやすく調整する --- */
-    body {
-      font-size: 15px; /* 全体の文字を、少しだけ大きくする */
-    }
-    #header h1 {
-      font-size: 24px;
-    }
-    .article-title {
-      font-size: 20px;
-    }
-    .header-image {
-      height: 180px; /* ヘッダー画像を、少しだけ、小さくする */
-    }
+  /* --- 5.1 全体レイアウト --- */
+  #container {
+    width: 100%;
+    margin: 0;
+    border: none;
+    box-shadow: none;
   }
+  #main-wrapper {
+    flex-direction: column;
+    padding: 15px;
+  }
+  #content {
+    width: 100%;
+    padding-right: 0;
+  }
+  #sidebar {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  /* --- 5.2 文字・画像の調整 --- */
+  body {
+    font-size: 15px;
+  }
+  #header h1 {
+    font-size: 24px;
+  }
+  .article-title {
+    font-size: 20px;
+  }
+  .header-image {
+    height: 180px;
+  }
+}
