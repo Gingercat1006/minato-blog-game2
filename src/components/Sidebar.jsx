@@ -1,8 +1,9 @@
-// src/components/Sidebar.jsx (★★★★★ 究極の最終形態 ★★★★★)
+// src/components/Sidebar.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { articles } from '../data/gameData';
 
+// 記事のサイドバー達
 const Sidebar = () => {
   const allArticles = Object.values(articles).filter(article => !article.isFinal);
   const sortedArticles = allArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -32,8 +33,6 @@ const Sidebar = () => {
           ))}
         </ul>
       </div>
-      
-      {/* ★★★ カレンダーウィジェットの、全ての記憶を、ここから、完全に、消し去ります ★★★ */}
 
     </aside>
   );

@@ -1,4 +1,4 @@
-// src/components/FinalChoice.jsx (★★★★★ これが、最後の、本当の、絶対的な正義です ★★★★★)
+// src/components/FinalChoice.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -28,7 +28,7 @@ const FinalChoice = ({ isVisible }) => {
     }
   };
 
-  // もし、出番でなければ、舞台袖で、静かに、待機する
+  // もし、出番でなければ、静かに、待機する
   if (!isVisible) {
     return null;
   }

@@ -1,7 +1,5 @@
-// frontend/src/pages/ProfilePage.jsx (修正後)
+// frontend/src/pages/ProfilePage.jsx
 import React from 'react';
-
-// ★BlogLayoutのインポートを削除
 
 const ProfilePage = () => {
   return (

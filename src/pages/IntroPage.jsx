@@ -1,4 +1,4 @@
-// src/pages/IntroPage.jsx (新規作成)
+// src/pages/IntroPage.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './IntroPage.css';
@@ -20,7 +20,7 @@ const IntroPage = () => {
           このブログに投稿された、全ての記録を閲覧し、その奥に隠された<strong>「真実」</strong>を突き止めること。<br />
           それが、このゲームの目的です。
         </p>
-        {/* ★★★ aタグを、React RouterのLinkコンポーネントに、進化させます ★★★ */}
+        {/* aタグを、React RouterのLinkコンポーネントに、進化させます */}
         <Link to="/home" className="button">湊の個人ブログへ</Link>
       </div>
     </div>

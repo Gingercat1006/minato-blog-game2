@@ -1,4 +1,4 @@
-// src/pages/ThemePage.jsx (★★★★★ 究極の最終形態 ★★★★★)
+// src/pages/ThemePage.jsx
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { articles } from '../data/gameData';
@@ -13,9 +13,7 @@ const ThemePage = () => {
   return (
     <div>
       <h2 className="article-title">テーマ: {themeName}</h2>
-      
-      {/* ★★★ ここが、最後の、そして、最も重要な、修正です ★★★ */}
-      {/* ★★★ 全ての「装飾」を、インテリアデザイナーに、委ねます ★★★ */}
+
       <ul className="theme-article-list">
         {filteredArticles.map(article => (
           <li key={article.id}>

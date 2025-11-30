@@ -1,7 +1,8 @@
-// src/components/ScrollToTop.jsx (新規作成)
+// src/components/ScrollToTop.jsx
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
+// リロードした後に必ずページ上から表示する
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 

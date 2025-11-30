@@ -1,11 +1,10 @@
-// src/pages/HomePage.jsx (★★★★★ 最終完成版 ★★★★★)
+// src/pages/HomePage.jsx 
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { articles } from '../data/gameData';
 
-// ★★★ ここからが、このゲームの、最後の、そして、最も強力な魔法です ★★★
 
-// 呪文①：全ての「監督命令」を、脚本から消し去る、浄化の呪文
+// 白文字に置き換え
 const stripCommands = (content) => {
   return content.replace(/(\[HIDDEN\].*?\[\/HIDDEN\]|\[IMAGE:.+?\])/g, '');
 };
@@ -18,8 +17,6 @@ const truncateText = (text, length) => {
   }
   return cleanedText.substring(0, length) + '...';
 };
-
-// ★★★ ここまでが、このゲームの、最後の、そして、最も強力な魔法です ★★★
 
 
 const HomePage = () => {
