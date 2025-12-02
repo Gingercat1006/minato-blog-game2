@@ -11,6 +11,7 @@ import IntroPage from './pages/IntroPage';
 import ScrollToTop from './components/ScrollToTop';
 import GameClearPage from './pages/GameClearPage';
 
+// ページの遷移を実現
 function App() {
   return (
     <Router>

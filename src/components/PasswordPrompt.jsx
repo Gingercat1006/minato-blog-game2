@@ -1,7 +1,7 @@
 // src/components/PasswordPrompt.jsx
 import React, { useState } from 'react';
 
-// 全ての正解パスワード（通常＋揺らぎ許容）を、難読化して、ここに、ただ一つ、集約する
+// 全ての正解パスワード（通常＋揺らぎ許容）を、難読化して、集約する
 const encodedAnswers = {
   'weiffd': [
     'a2FzdW1pY2hvdQ==', 
@@ -28,7 +28,7 @@ const PasswordPrompt = ({ articleId, hint, onCorrectPassword }) => {
     try {
       const encodedInput = btoa(userInput);
 
-      // ★★★ 浄化された、ただ一つの、完璧なチェックロジック ★★★
+      // パスワードチェックロジック
       if (encodedAnswers[articleId] && encodedAnswers[articleId].includes(encodedInput)) {
         onCorrectPassword(articleId);
       } else {
@@ -36,12 +36,11 @@ const PasswordPrompt = ({ articleId, hint, onCorrectPassword }) => {
       }
 
     } catch (err) {
-      // ★★★ 全角文字など、予期せぬ入力から、ゲームを守る、最強の防護壁 ★★★
+      // 全角文字など、予期せぬ入力から、ゲームを守る
       console.error("Password encoding error:", err);
       setError('パスワードの形式が正しくありません。半角英数字で入力してください。');
     }
   };
-
   return (
     <div className="password-prompt">
       <p>この記事はパスワードで保護されています。</p>

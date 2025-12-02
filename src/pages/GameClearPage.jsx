@@ -1,10 +1,9 @@
-// src/pages/GameClearPage.jsx (新規作成)
+// src/pages/GameClearPage.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './IntroPage.css'; // ← 序章の、美しいデザインを、再利用します
+import './IntroPage.css';
 
 const GameClearPage = () => {
-  // ★★★ ここに、あなたの、Microsoft Formsの、URLを、貼り付けてください ★★★
   const surveyUrl = "https://forms.office.com/r/GV3W610kqU";
 
   return (
@@ -19,7 +18,7 @@ const GameClearPage = () => {
           新しい物語の、参考にさせていただきます。
         </p>
         
-        {/* ★★★ aタグを、新しいタブで開くように、進化させます ★★★ */}
+        {/*aタグを、新しいタブで開く*/}
         <a href={surveyUrl} target="_blank" rel="noopener noreferrer" className="button">
           アンケートに答える
         </a>

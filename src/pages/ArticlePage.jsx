@@ -1,4 +1,4 @@
-// src/pages/ArticlePage.jsx (★★★★★ これが、最後の、本当の、絶対的な正義です ★★★★★)
+// src/pages/ArticlePage.jsx 
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import PasswordPrompt from '../components/PasswordPrompt';
@@ -65,7 +65,7 @@ const ArticlePage = () => {
 
         <FinalChoice isVisible={showFinalChoice} />
         
-        {/* ★★★ 時の羅針盤は、常に、ここに、存在します ★★★ */}
+        {/* 前の記事へ、次の記事へのid受け渡し */}
         <div className="article-navigation">
           {prevArticle && <Link to={`/home/article/${prevArticle.id}`}>&laquo; 前の記事へ: {prevArticle.title}</Link>}
           {nextArticle && <Link to={`/home/article/${nextArticle.id}`} style={{ marginLeft: 'auto' }}>次の記事へ: {nextArticle.title} &raquo;</Link>}

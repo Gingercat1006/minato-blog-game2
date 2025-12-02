@@ -1,11 +1,10 @@
-// src/pages/HomePage.jsx (★★★★★ 最終完成版 ★★★★★)
+// src/pages/HomePage.jsx 
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { articles } from '../data/gameData';
 
-// ★★★ ここからが、このゲームの、最後の、そして、最も強力な魔法です ★★★
 
-// 呪文①：全ての「監督命令」を、脚本から消し去る、浄化の呪文
+// 白文字に置き換え
 const stripCommands = (content) => {
   return content.replace(/(\[HIDDEN\].*?\[\/HIDDEN\]|\[IMAGE:.+?\])/g, '');
 };
@@ -19,8 +18,6 @@ const truncateText = (text, length) => {
   return cleanedText.substring(0, length) + '...';
 };
 
-// ★★★ ここまでが、このゲームの、最後の、そして、最も強力な魔法です ★★★
-
 
 const HomePage = () => {
   const allArticles = Object.values(articles).filter(article => !article.isFinal);
@@ -30,29 +27,21 @@ const HomePage = () => {
     <div>
       <h2 className="article-title">全ての記事</h2>
       
-      <ul className="theme-article-list" style={{ listStyle: 'none', paddingLeft: 0 }}>
+       <ul className="theme-article-list">
         {sortedArticles.map(article => (
-          <li key={article.id} style={{ marginBottom: '20px', borderBottom: '1px dotted #ccc', paddingBottom: '20px' }}>
-            
-            <p className="article-meta" style={{ margin: '0 0 8px 0' }}>
+          <li key={article.id}>
+            <p className="article-meta">
               <time>{article.date}</time> | 
               <span className="category">{article.theme}</span>
             </p>
-            
-          <Link to={`/home/article/${article.id}`} style={{ fontSize: '20px', textDecoration: 'none', color: '#0066cc', fontWeight: 'bold' }}>
-            {article.title} 
-            {article.isProtected && <span style={{ marginLeft: '10px', color: '#999' }}>[鍵]</span>}
-          </Link>
-            
+            <Link to={`/home/article/${article.id}`}>
+              {article.title} 
+              {article.isProtected && <span>[鍵]</span>}
+            </Link>
             {article.isProtected ? (
-              <p style={{ margin: '8px 0 0', color: '#666', fontStyle: 'italic' }}>
-                この記事はパスワードで保護されています...
-              </p>
+              <p>この記事はパスワードで保護されています...</p>
             ) : (
-              <p style={{ margin: '8px 0 0', color: '#666' }}>
-                {/* ★★★ ここで、2つの魔法を、同時に、唱えます ★★★ */}
-                {truncateText(stripCommands(article.content), 100)}
-              </p>
+              <p>{truncateText(stripCommands(article.content), 100)}</p>
             )}
           </li>
         ))}
@@ -60,5 +49,4 @@ const HomePage = () => {
     </div>
   );
 };
-
 export default HomePage;
