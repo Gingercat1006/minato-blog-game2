@@ -1,4 +1,4 @@
-// src/hooks/useArticleNavigation.js (★★★★★ これが、最後の、本当の、絶対的な正義です ★★★★★)
+// src/hooks/useArticleNavigation.js 
 import { articles } from '../data/gameData';
 
 const getSortedArticles = () => {
@@ -13,8 +13,7 @@ export const useArticleNavigation = (articleId) => {
   const prevArticle = sortedArticles[currentIndex - 1];
   let nextArticle = sortedArticles[currentIndex + 1];
 
-  // ★★★ ここが、最後の、そして、最も重要な、「新しい知恵」です ★★★
-  // ★★★ もし、今いる記事が「復讐の終わり（sdjkjklklj）」なら、次の記事は「ない」ことにする ★★★
+  //もし、今いる記事が「復讐の終わり（sdjkjklklj）」なら、次の記事は「ない」ことにする
   if (articleId === 'sdjkjklklj') {
     nextArticle = null;
   }
