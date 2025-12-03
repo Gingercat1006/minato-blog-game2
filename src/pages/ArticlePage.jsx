@@ -8,20 +8,20 @@ import FinalChoice from '../components/FinalChoice';
 import { useArticleNavigation } from '../hooks/useArticleNavigation';
 import { articles } from '../data/gameData';
 
-const ArticlePage = () => {
+// 親(App.jsx)から、unlocked と onCorrectPassword を受け取ります
+const ArticlePage = ({ unlocked, onCorrectPassword }) => {
   const { articleId = '1' } = useParams();
   const article = articles[articleId];
   
-  const [unlocked, setUnlocked] = useState({});
-  const [showFinalChoice, setShowFinalChoice] = useState(false);
   
+  const [showFinalChoice, setShowFinalChoice] = useState(false);
   const { prevArticle, nextArticle } = useArticleNavigation(articleId);
 
   useEffect(() => {
     setShowFinalChoice(false);
   }, [articleId]);
 
-  const handleCorrectPassword = (id) => setUnlocked({ ...unlocked, [id]: true });
+
   const handleFinalArticleClick = () => { if (article?.isFinal) setShowFinalChoice(true); };
 
   if (!article) {
@@ -35,6 +35,7 @@ const ArticlePage = () => {
     );
   }
   
+  // 親から貰った unlocked を見て、表示するか決めます 
   const showContent = !article.isProtected || unlocked[articleId];
 
   return (
@@ -42,7 +43,7 @@ const ArticlePage = () => {
       <div className={`glitch-overlay ${showFinalChoice ? 'active' : ''}`}></div>
       <article className="post">
         <h2 className="article-title">{article.title}</h2>
-        <p className="article-meta"><time>{article.date}</time> | <span className="category">{article.theme}</span></p>
+        <p className="article-meta"><time>{article.date} 10:00:00</time> | <span className="category">{article.theme}</span></p>
         
         <div className="article-body">
           {showContent ? (
@@ -59,14 +60,13 @@ const ArticlePage = () => {
             <PasswordPrompt 
               articleId={articleId} 
               hint={article.hint} 
-              onCorrectPassword={handleCorrectPassword}
+              onCorrectPassword={onCorrectPassword} //  親の関数を渡します
             />
           )}
         </div>
 
         <FinalChoice isVisible={showFinalChoice} />
         
-        {/* 前の記事へ、次の記事へのid受け渡し */}
         <div className="article-navigation">
           {prevArticle && <Link to={`/home/article/${prevArticle.id}`}>&laquo; 前の記事へ: {prevArticle.title}</Link>}
           {nextArticle && <Link to={`/home/article/${nextArticle.id}`} style={{ marginLeft: 'auto' }}>次の記事へ: {nextArticle.title} &raquo;</Link>}
