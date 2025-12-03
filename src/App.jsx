@@ -1,5 +1,5 @@
 // src/App.jsx
-import React, { useState } from 'react'; // ← useStateを追加
+import React, { useState } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import BlogLayout from './components/BlogLayout';

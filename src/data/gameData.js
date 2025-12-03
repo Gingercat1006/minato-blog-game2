@@ -18,7 +18,7 @@ const articlesList = [
   // --- 第3部：第二、第三の復讐 ---
   { id: 'yurtuyroi', date: '2025-11-05', isProtected: true, title: '二人目', theme: '隠された記事', hint: 'Mの名前は？', content: `二人目の男、三宅。隣の部屋に住んでいた男。\nあの夜、彼は何も見なかったと証言した。嘘つき。\n奴は当時と同じ場所で、息を潜めて暮らしている。` },
   { id: 'iuyerewv', date: '2025-11-07', isProtected: true, title: '二人目の男', theme: '隠された記事', hint: '二人目の男、Mが住んでいた部屋番号は？', content: `三宅も消した。\nこれであと一人。\n最後の男、O。奴だけは、絶対にこの手で。\n「真実は目に見えるとは限らない。」\n\n\n[HIDDEN]最後は奴を...「折戸」を殺すだけ...[/HIDDEN]` },
-  { id: 'pa;xa', date: '2025-11-08', isProtected: true, title: '最後の男', theme: '隠された記事', hint: 'Oの名前は？君は本当に前日の投稿を全部見た？', content: `主犯、折戸。あの日、青いトラックに乗って妻と娘を連れ去った男。\n奴は、全てを奪った。\n10年間、ずっとこの日のために生きてきた。\n娘が最後に私にくれた宝物。それが、最後の道標だ。[IMAGE:images/1107.jpg]` },
+  { id: 'pa;xa', date: '2025-11-08', isProtected: true, title: '最後の男', theme: '隠された記事', hint: 'Oの名前は？君は本当に昨日の投稿を全部見た？', content: `主犯、折戸。あの日、青いトラックに乗って妻と娘を連れ去った男。\n奴は、全てを奪った。\n10年間、ずっとこの日のために生きてきた。\n娘が最後に私にくれた宝物。それが、最後の道標だ。[IMAGE:images/1107.jpg]` },
   { id: 'sdjkjklklj', date: '2025-12-09', isProtected: true, title: '復讐の終わり', theme: '隠された記事', hint: '“私”の誕生日', content: `全て終わった...\n折戸も...私の手で裁いた...\n長かった...本当に長かった...\nもう、この世界に未練はない。\n\n[LINK:/home/article/jdfhsj|» 最後の記録へ]`   },
 
   // --- 第4部：最後の告白と、最終分岐 ---
