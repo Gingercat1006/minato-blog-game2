@@ -30,7 +30,7 @@ function App() {
         <Route path="/home" element={<BlogLayout />}>
           <Route index element={<HomePage />} />
           
-          {/* ここが重要！記憶（unlocked）と、書き込み係（handle...）を渡す */}
+          {/*記憶（unlocked）と、書き込み係（handle...）を渡す */}
           <Route 
             path="article/:articleId" 
             element={
