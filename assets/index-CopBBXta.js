@@ -103,7 +103,7 @@ Error generating stack: `+i.message+`
 「真実は目に見えるとは限らない。」
 
 
-[HIDDEN]最後は奴を...「折戸」を殺すだけ...[/HIDDEN]`},{id:"pa;xa",date:"2025-11-08",isProtected:!0,title:"最後の男",theme:"隠された記事",hint:"Oの名前は？君は本当に前日の投稿を全部見た？",content:`主犯、折戸。あの日、青いトラックに乗って妻と娘を連れ去った男。
+[HIDDEN]最後は奴を...「折戸」を殺すだけ...[/HIDDEN]`},{id:"pa;xa",date:"2025-11-08",isProtected:!0,title:"最後の男",theme:"隠された記事",hint:"Oの名前は？君は本当に昨日の投稿を全部見た？",content:`主犯、折戸。あの日、青いトラックに乗って妻と娘を連れ去った男。
 奴は、全てを奪った。
 10年間、ずっとこの日のために生きてきた。
 娘が最後に私にくれた宝物。それが、最後の道標だ。[IMAGE:images/1107.jpg]`},{id:"sdjkjklklj",date:"2025-12-09",isProtected:!0,title:"復讐の終わり",theme:"隠された記事",hint:"“私”の誕生日",content:`全て終わった...
