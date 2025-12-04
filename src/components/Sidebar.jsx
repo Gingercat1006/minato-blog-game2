@@ -1,12 +1,24 @@
 // src/components/Sidebar.jsx
-import '../css/Sidebar.css';
+import '../css/Sidebar.css'; // レイアウト用のCSS（そのまま）
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { articles } from '../data/gameData';
 
-// 記事のサイドバー達
-const Sidebar = () => {
-  const allArticles = Object.values(articles).filter(article => !article.isFinal);
+// isTruthRevealed を受け取るように変更
+const Sidebar = ({ isTruthRevealed }) => {
+  
+  // フィルタリングロジックだけ強化
+  const allArticles = Object.values(articles).filter(article => {
+    // 1. 通常の「最後の記事(isFinal)」は隠す（ただしTrueEnd用は別扱い）
+    if (article.isFinal && !article.isTrueEnd) return false;
+
+    // 2. 「隠し記事(isHidden)」は、フラグ(isTruthRevealed)が立っていないと隠す
+    if (article.isHidden && !isTruthRevealed) return false;
+
+    return true;
+  });
+
+  // 日付順に並び替え（そのまま）
   const sortedArticles = allArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (
