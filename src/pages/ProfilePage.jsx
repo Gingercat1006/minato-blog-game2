@@ -13,7 +13,14 @@ const ProfilePage = ({ onUnlockTruth }) => {
     setChatHistory(prev => [...prev, { type: 'user', text: userMessage }]);
     setChatInput('');
 
-    if (userMessage.toLowerCase() === 'so-ko' || 'souko' ||'そうこ'||'倉庫') {
+    // 入力されたメッセージを小文字にして、前後の空白を削除する（誤入力防止）
+    const msg = userMessage.toLowerCase().trim();
+    
+    // 正解のキーワードリスト
+    const correctKeywords = ['so-ko', 'souko', 'そうこ', '倉庫'];
+
+    // リストの中に msg が含まれているかチェック
+    if (correctKeywords.includes(msg)) {
       setTimeout(() => {
         setChatHistory(prev => [...prev, { type: 'admin', text: '...そこですか？ すぐに向かいます。ありがとう。' }]);
         if (onUnlockTruth) {
