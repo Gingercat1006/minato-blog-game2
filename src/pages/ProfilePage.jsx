@@ -13,7 +13,7 @@ const ProfilePage = ({ onUnlockTruth }) => {
     setChatHistory(prev => [...prev, { type: 'user', text: userMessage }]);
     setChatInput('');
 
-    // 入力されたメッセージを小文字にして、前後の空白を削除する（誤入力防止）
+// 入力されたメッセージを小文字にして、前後の空白を削除する（誤入力防止）
     const msg = userMessage.toLowerCase().trim();
     
     // 正解のキーワードリスト
@@ -21,11 +21,17 @@ const ProfilePage = ({ onUnlockTruth }) => {
 
     // リストの中に msg が含まれているかチェック
     if (correctKeywords.includes(msg)) {
+      // 1. まず1秒後に返信メッセージを表示する
       setTimeout(() => {
         setChatHistory(prev => [...prev, { type: 'admin', text: '...そこですか？ すぐに向かいます。ありがとう。' }]);
-        if (onUnlockTruth) {
-          onUnlockTruth();
-        }
+        
+        // 2. メッセージが表示されてから3秒後に、ページ更新処理を実行する
+        setTimeout(() => {
+          if (onUnlockTruth) {
+            onUnlockTruth();
+          }
+        }, 2000); // 3秒待機（読み終わる時間を確保）
+
       }, 1000);
     }
   };
