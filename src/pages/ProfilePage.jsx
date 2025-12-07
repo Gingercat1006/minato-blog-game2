@@ -1,4 +1,4 @@
-// src/pages/ProfilePage.jsx (★★★★★ 擬似AI・完全版 ★★★★★)
+// src/pages/ProfilePage.jsx
 import React, { useState } from 'react';
 
 const ProfilePage = ({ onUnlockTruth }) => {
@@ -6,9 +6,7 @@ const ProfilePage = ({ onUnlockTruth }) => {
   const [chatHistory, setChatHistory] = useState([]);
   const [isTyping, setIsTyping] = useState(false); // 入力中の演出用
 
-  // --- 湊の「脳みそ（会話パターン）」 ---
   const talkPatterns = [
-    // 1. 挨拶・自己紹介系
     { 
       keywords: ['こんにちは', 'こんばんは', 'はじめまして', 'やあ'], 
       replies: [
@@ -74,8 +72,6 @@ const ProfilePage = ({ onUnlockTruth }) => {
         '全ての元凶。悪魔そのものです。'
       ]
     },
-
-    // 4. 謎解きのヒント系
     { 
       keywords: ['ヒント', 'わからん', '難しい', '助けて', 'わからない', 'パスワード'], 
       replies: [
@@ -155,7 +151,7 @@ const ProfilePage = ({ onUnlockTruth }) => {
         setChatHistory(prev => [...prev, { type: 'admin', text: replyText }]);
       }, thinkingTime);
     } else {
-      // ★★★ 返信しない場合は、入力中表示をすぐに消す（既読スルー） ★★★
+      // 返信しない
       setIsTyping(false);
     }
   };
@@ -164,10 +160,14 @@ const ProfilePage = ({ onUnlockTruth }) => {
       <h2 className="article-title">プロフィール詳細</h2>
       
       <div className="article-body">
-        {/* ... (プロフィール情報の表示はそのまま) ... */}
         <h4>HN</h4>
         <p>湊 (Minato)</p>
-        {/* ... */}
+        <h4>自己紹介</h4>
+        <p>静かな場所が好きです。日々のことを綴ります。このブログは、私の“記録”です。</p>
+        <h4>好きなもの</h4>
+        <p>深煎りコーヒー、白黒映画、水。</p>
+        <h4>SNSなど</h4>
+        <p>やっていません。</p>
         <p style={{ fontSize: '0.9em', color: '#666' }}>
           記事への質問などがあれば、こちらへお願いします。<br/>
           ※全てに目を通しますが、いたずらや無関係な内容は返信しません。

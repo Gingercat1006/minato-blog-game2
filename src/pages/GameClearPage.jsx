@@ -1,6 +1,6 @@
 // src/pages/GameClearPage.jsx
 import React from 'react';
-import './IntroPage.css';
+import '../css/IntroPage.css';
 
 const GameClearPage = () => {
   const surveyUrl = "https://forms.office.com/r/GV3W610kqU";
@@ -8,10 +8,6 @@ const GameClearPage = () => {
   //「最初から」ボタンを押したときの処理
   const handleReplay = (e) => {
     e.preventDefault(); // 通常のリンク動作を止める
-    
-    // 今のURLから「#」以降を取り除いた「基本のURL」を取得してそこへ移動
-    // これでブラウザが再読み込み（リロード）され、記憶がリセットされてイントロ画面に戻ります
-    // (例: http://localhost:5173/minato-blog-game2/#/gameclear → http://localhost:5173/minato-blog-game2/)
     window.location.href = window.location.href.split('#')[0];
   };
 

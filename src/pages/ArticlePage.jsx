@@ -52,7 +52,7 @@ const ArticlePage = ({ unlocked, onCorrectPassword }) => {
             <div onClick={handleFinalArticleClick}>
               <ContentRenderer content={article.content} />
               
-              {/* ▼▼▼ 追加: 隠し記事（TrueEnd）の場合の「自首する」ボタン ▼▼▼ */}
+              {/*隠し記事（TrueEnd）の場合の「自首する」ボタン*/}
               {article.isTrueEnd && (
                  <div className="final-choice active" style={{marginTop: '40px'}}>
                     <h3>決断の時</h3>
@@ -60,7 +60,7 @@ const ArticlePage = ({ unlocked, onCorrectPassword }) => {
                  </div>
               )}
 
-              {/* ▼▼▼ 既存: 通常の最終記事のクリック演出 ▼▼▼ */}
+              {/*既存: 通常の最終記事のクリック演出*/}
               {article.isFinal && !article.isTrueEnd && !showFinalChoice && (
                   <div style={{ border: '1px dashed #999', padding: '10px', marginTop: '20px', textAlign: 'center', color: '#777' }}>
                     <p>読み終えたら、画面のどこかをクリックしてください。</p>
