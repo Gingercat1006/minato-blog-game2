@@ -2,14 +2,14 @@
 import '../css/Sidebar.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
-// ★ gameDataを直接読み込むのをやめ、フック（賢者）を呼びます
+// gameDataを直接読み込むのをやめ、フック（賢者）を呼びます
 import { useArticles } from '../hooks/useGameLogic';
 
 const Sidebar = ({ isTruthRevealed }) => {
-  // ★ フックから「日付順に並んだ全記事リスト」をもらいます
+  // フックから「日付順に並んだ全記事リスト」をもらいます
   const { allArticles } = useArticles();
 
-  // ★ ここでは「表示するかどうか」のフィルタリングだけに集中します
+  // ここでは「表示するかどうか」のフィルタリングだけに集中します
   const visibleArticles = allArticles.filter(article => {
     // 1. 通常の「最後の記事(isFinal)」は隠す（ただしTrueEnd用は別扱い）
     if (article.isFinal && !article.isTrueEnd) return false;

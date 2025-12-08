@@ -113,7 +113,7 @@ const ProfilePage = ({ onUnlockTruth }) => {
     const msg = userMessage.toLowerCase();
 
     // --- 1. 正解（倉庫）の判定 ---
-    const correctKeywords = ['so-ko', 'souko', 'そうこ', '倉庫'];
+    const correctKeywords = ['kasumiso-ko', 'kasumisouko', 'かすみそうこ', '霞倉庫'];
 
     if (correctKeywords.includes(msg)) {
       setTimeout(() => {
