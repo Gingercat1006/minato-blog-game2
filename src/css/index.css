@@ -154,3 +154,116 @@ a:hover {
     cursor: default;
   }
 
+/* --- 自作アラート（通知モーダル） --- */
+.notification-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* 背景を少し暗く */
+    z-index: 2000; /* 画像モーダルより手前に */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .notification-box {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    max-width: 400px;
+    width: 80%;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
+  
+  .notification-text {
+    font-size: 16px;
+    line-height: 1.8;
+    white-space: pre-wrap; /* 改行コード(\n)を反映させる */
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .notification-button {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+  }
+  
+  .notification-button:hover {
+    background-color: #004499;
+  }
+
+/* --- 時間経過（暗転）演出 --- */
+.story-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 3000; /* 最前面に表示 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: serif; /* 明朝体で雰囲気出し */
+    font-size: 24px;
+    letter-spacing: 0.2em;
+    
+    /* フェードイン・アウトの制御はReact側で行いますが、基本のトランジションを設定 */
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    pointer-events: none; /* 見えてない時はクリックを邪魔しない */
+  }
+  
+  .story-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  /* 文字がふわっと出るアニメーション */
+  .fade-text {
+    animation: textFadeIn 3s ease-in-out forwards;
+    opacity: 0;
+  }
+  
+  @keyframes textFadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    30% { opacity: 1; transform: translateY(0); }
+    70% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+
+/* --- 新着記事の出現アニメーション --- */
+@keyframes newEntryAppear {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+      background-color: #ffffcc; /* 最初は黄色っぽく光る */
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0);
+      background-color: #ffffcc;
+    }
+    100% {
+      background-color: transparent; /* 元の色に戻る */
+    }
+  }
+  
+  .new-arrival {
+    animation: newEntryAppear 2s ease-out forwards;
+    border: 2px solid #0066cc !important; /* 新着だとわかるように枠線をつける */
+  }

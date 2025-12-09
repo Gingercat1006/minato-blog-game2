@@ -1,0 +1,90 @@
+/* src/css/ProfilePage.css */
+
+/* --- 記事への質問などの注釈 --- */
+.profile-note {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 20px;
+  }
+  
+  /* --- チャットエリア全体 --- */
+  .chat-container {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  /* --- チャット履歴（スクロールエリア） --- */
+  .chat-history {
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* --- メッセージの共通スタイル --- */
+  .chat-message {
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 80%;
+    font-size: 14px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    white-space: pre-wrap; /* 改行を反映 */
+  }
+  
+  /* ユーザーのメッセージ（右寄せ・緑） */
+  .chat-message.user {
+    align-self: flex-end;
+    background-color: #dcf8c6;
+  }
+  
+  /* 管理人（湊）のメッセージ（左寄せ・白） */
+  .chat-message.admin {
+    align-self: flex-start;
+    background-color: #fff;
+    border: 1px solid #eee;
+  }
+  
+  /* --- 入力中の表示 --- */
+  .typing-indicator {
+    align-self: flex-start;
+    color: #aaa;
+    font-size: 12px;
+    margin-left: 10px;
+  }
+  
+  /* --- 送信フォーム --- */
+  .chat-form {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .chat-input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .chat-submit-button {
+    padding: 8px 15px;
+    cursor: pointer;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  .chat-submit-button:hover:not(:disabled) {
+    background-color: #004499;
+  }
+  
+  .chat-submit-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }

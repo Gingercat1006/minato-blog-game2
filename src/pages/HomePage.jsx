@@ -10,10 +10,9 @@ const HomePage = () => {
   const { allArticles } = useArticles();
   const { unlocked, isTruthRevealed } = useGame();
 
-  // 隠しルートが解放されていない場合、隠し記事は見せないフィルタリング
   const visibleArticles = allArticles.filter(article => {
-    if (article.isFinal && !article.isTrueEnd) return false; // 通常の最終記事は一覧に出さない
-    if (article.isHidden && !isTruthRevealed) return false; // 真実ルート解放前は隠す
+    if (article.isFinal && !article.isTrueEnd) return false;
+    if (article.isHidden && !isTruthRevealed) return false;
     return true;
   });
 
@@ -23,11 +22,14 @@ const HomePage = () => {
       
        <ul className="theme-article-list">
         {visibleArticles.map(article => {
-           // ロック判定
            const isLocked = article.isProtected && !unlocked[article.id];
+           
+           // ★★★ 修正点：これが「真実の記事（隠しルート）」なら、特別なクラスをつける ★★★
+           const itemClass = article.isHidden ? "new-arrival" : "";
 
            return (
-            <li key={article.id}>
+            // ★ className に itemClass を追加
+            <li key={article.id} className={itemClass}>
               <p className="article-meta">
                 <time>{article.date}</time> | 
                 <span className="category">{article.theme}</span>
@@ -40,7 +42,6 @@ const HomePage = () => {
               {isLocked ? (
                 <p>この記事はパスワードで保護されています...</p>
               ) : (
-                // ★★★ インポートした関数を使う ★★★
                 <p>{truncateText(stripCommands(article.content), 100)}</p>
               )}
             </li>

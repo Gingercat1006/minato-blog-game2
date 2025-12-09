@@ -1,9 +1,11 @@
+// src/App.jsx
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 // --- コンポーネント ---
 import BlogLayout from './components/BlogLayout';
 import Modal from './components/Modal';
+import NotificationModal from './components/NotificationModal';
 
 // --- ページ ---
 import IntroPage from './pages/IntroPage';
@@ -17,10 +19,29 @@ import GameClearPage from './pages/GameClearPage';
 // --- フックとプロバイダー ---
 import { useScrollToTop, GameProvider, useGame } from './hooks/useGameLogic.jsx';
 
-// モーダル表示用の部品
-const ModalRenderer = () => {
-  const { modalImage, closeModal } = useGame();
-  return modalImage ? <Modal imageSrc={modalImage} onClose={closeModal} /> : null;
+// ★★★ 修正：OverlayRenderer に「暗転演出」を追加 ★★★
+const OverlayRenderer = () => {
+  // isTimeSkipping を追加で受け取ります
+  const { 
+    modalImage, closeModal, 
+    notification, closeNotification, 
+    isTimeSkipping 
+  } = useGame();
+  
+  return (
+    <>
+      {/* 1. 画像モーダル */}
+      {modalImage && <Modal imageSrc={modalImage} onClose={closeModal} />}
+      
+      {/* 2. 通知モーダル */}
+      {notification && <NotificationModal message={notification} onClose={closeNotification} />}
+
+      {/* 3. ★追加★ 時間経過（暗転）演出 */}
+      <div className={`story-overlay ${isTimeSkipping ? 'active' : ''}`}>
+        {isTimeSkipping && <p className="fade-text">数日後...</p>}
+      </div>
+    </>
+  );
 };
 
 // ルーティング部分
@@ -48,7 +69,7 @@ function App() {
   return (
     <GameProvider>
       <AppRoutes />
-      <ModalRenderer />
+      <OverlayRenderer />
     </GameProvider>
   );
 }
