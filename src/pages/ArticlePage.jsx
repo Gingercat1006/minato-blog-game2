@@ -56,7 +56,7 @@ const ArticlePage = ({ unlocked, onCorrectPassword }) => {
               {article.isTrueEnd && (
                  <div className="final-choice active" style={{marginTop: '40px'}}>
                     <h3>決断の時</h3>
-                    <button onClick={() => navigate('/ending/4')}>自首する</button>
+                    <button onClick={() => navigate('/ending/4')}>終幕へ</button>
                  </div>
               )}
 
