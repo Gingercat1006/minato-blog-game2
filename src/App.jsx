@@ -1,6 +1,8 @@
 // src/App.jsx
 import React, { useState } from 'react';
+// ★★★ ここでは Routes, Route だけを使います（Routerは消す） ★★★
 import { Routes, Route } from 'react-router-dom';
+
 import BlogLayout from './components/BlogLayout';
 import ArticlePage from './pages/ArticlePage';
 import ProfilePage from './pages/ProfilePage';
@@ -10,24 +12,20 @@ import HomePage from './pages/HomePage';
 import IntroPage from './pages/IntroPage';
 import GameClearPage from './pages/GameClearPage';
 
-// フックを読み込みます（コンポーネントのScrollToTopは削除したので消す）
+// カスタムフック
 import { useScrollToTop } from './hooks/useGameLogic';
 
 function App() {
-  // ここで「魔法」を唱えます（ページ遷移時に上に戻る）
+  // ★★★ main.jsxで包んだおかげで、ここでフックを使ってもエラーになりません！ ★★★
   useScrollToTop();
 
-  // 記憶（鍵の解除状態）
   const [unlocked, setUnlocked] = useState({});
-  // 隠しルート解放フラグ
   const [isTruthRevealed, setIsTruthRevealed] = useState(false);
 
-  // 鍵解除時の処理
   const handleCorrectPassword = (id) => {
     setUnlocked(prev => ({ ...prev, [id]: true }));
   };
 
-  // チャットで謎を解いた時に実行される関数
   const handleUnlockTruth = () => {
     if (!isTruthRevealed) {
       setIsTruthRevealed(true);
@@ -36,6 +34,7 @@ function App() {
   };
 
   return (
+    // ★★★ <Router>タグは削除し、いきなり <Routes> で始めます ★★★
     <Routes>
       <Route path="/" element={<IntroPage />} />
       

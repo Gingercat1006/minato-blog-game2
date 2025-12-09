@@ -1,31 +1,30 @@
-// vite.config.js
+// vite.config.js (Vercel用・完全版)
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
-  base: "/minato-blog-game2/", 
   plugins: [
     react(),
     VitePWA({
-      registerType: 'autoUpdate', // アプリを自動更新する設定
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'], // キャッシュするファイル
+      registerType: 'autoUpdate',
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
-        name: '湊の個人ブログ', // アプリの正式名称
-        short_name: '湊のブログ', // ホーム画面の下に出る短い名前
+        name: '湊の個人ブログ',
+        short_name: '湊のブログ',
         description: 'Web探索型謎解きゲーム',
-        theme_color: '#ffffff', // テーマカラー
+        theme_color: '#ffffff',
         background_color: '#ffffff',
-        display: 'standalone', // ★重要★ これでブラウザの枠が消えて、全画面アプリになります
+        display: 'standalone',
         icons: [
           {
-            src: 'images/favicon.png', // あなたが用意したアイコン
+            src: 'images/favicon.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any'
           },
           {
-            src: 'images/favicon.png', // 大きいサイズも同じ画像を指定しておきます
+            src: 'images/favicon.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any'

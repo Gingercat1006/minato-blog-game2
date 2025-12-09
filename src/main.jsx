@@ -1,15 +1,14 @@
+// src/main.jsx
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { HashRouter } from 'react-router-dom';
-
 import App from './App.jsx'
-import './css/index.css'
+import './css/index.css' 
+import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* App全体を HashRouter で包む */}
-    <HashRouter>
+    <BrowserRouter>
       <App />
-    </HashRouter>
+    </BrowserRouter>
   </React.StrictMode>,
 )
