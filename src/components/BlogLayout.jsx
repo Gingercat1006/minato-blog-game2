@@ -3,20 +3,18 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Sidebar from './Sidebar';
+// GameContextから直接データをもらってもいいですが、
+// 今はSidebarやOutletの中身が自分でデータを取りに行くので、ここは単純な枠組みだけでOKです。
 
-// 親(App)から isTruthRevealed を受け取る
-const BlogLayout = ({ corruptionLevel = 0, isTruthRevealed }) => {
+const BlogLayout = () => {
   return (
-    <div id="container" className={`corruption-level-${corruptionLevel}`}>
+    <div id="container">
       <Header />
       <div id="main-wrapper">
         <main id="content">
           <Outlet />
         </main>
-        
-        {/* Sidebar に isTruthRevealed を渡す */}
-        <Sidebar isTruthRevealed={isTruthRevealed} />
-        
+        <Sidebar /> {/* propsを渡す必要なし！ */}
       </div>
       <footer id="footer">
         <p>Copyright &copy; Minato's Room. All Rights Reserved.</p>

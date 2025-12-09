@@ -3,16 +3,19 @@ import '../css/Sidebar.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useArticles } from '../hooks/useGameLogic';
+import { useGame } from '../hooks/useGameLogic'; // ★追加
 
-const Sidebar = ({ isTruthRevealed }) => {
+const Sidebar = () => { // propsは削除
   const { allArticles } = useArticles();
+  
+  // ★★★ 放送局からデータをもらう ★★★
+  const { isTruthRevealed, unlocked } = useGame(); 
 
   const visibleArticles = allArticles.filter(article => {
     if (article.isFinal && !article.isTrueEnd) return false;
     if (article.isHidden && !isTruthRevealed) return false;
     return true;
   })
-  .reverse(); // ここで「新しい順」に反転させます
 
   return (
     <aside id="sidebar">
@@ -33,7 +36,7 @@ const Sidebar = ({ isTruthRevealed }) => {
             <li key={article.id}>
               <Link to={`/home/article/${article.id}`}>
                 {article.title}
-                {article.isProtected && <span style={{ marginLeft: '5px', color: '#999' }}>[鍵]</span>}
+                {article.isProtected && !unlocked[article.id] && <span style={{ marginLeft: '5px', color: '#999' }}>[鍵]</span>}
               </Link>
             </li>
           ))}

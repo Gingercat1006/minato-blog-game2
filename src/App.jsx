@@ -1,68 +1,55 @@
-// src/App.jsx
-import React, { useState } from 'react';
-// ★★★ ここでは Routes, Route だけを使います（Routerは消す） ★★★
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
+// --- コンポーネント ---
 import BlogLayout from './components/BlogLayout';
+import Modal from './components/Modal';
+
+// --- ページ ---
+import IntroPage from './pages/IntroPage';
+import HomePage from './pages/HomePage';
 import ArticlePage from './pages/ArticlePage';
 import ProfilePage from './pages/ProfilePage';
-import EndingPage from './pages/EndingPage';
 import ThemePage from './pages/ThemePage';
-import HomePage from './pages/HomePage';
-import IntroPage from './pages/IntroPage';
+import EndingPage from './pages/EndingPage';
 import GameClearPage from './pages/GameClearPage';
 
-// カスタムフック
-import { useScrollToTop } from './hooks/useGameLogic';
+// --- フックとプロバイダー ---
+import { useScrollToTop, GameProvider, useGame } from './hooks/useGameLogic.jsx';
 
-function App() {
-  // ★★★ main.jsxで包んだおかげで、ここでフックを使ってもエラーになりません！ ★★★
-  useScrollToTop();
+// モーダル表示用の部品
+const ModalRenderer = () => {
+  const { modalImage, closeModal } = useGame();
+  return modalImage ? <Modal imageSrc={modalImage} onClose={closeModal} /> : null;
+};
 
-  const [unlocked, setUnlocked] = useState({});
-  const [isTruthRevealed, setIsTruthRevealed] = useState(false);
-
-  const handleCorrectPassword = (id) => {
-    setUnlocked(prev => ({ ...prev, [id]: true }));
-  };
-
-  const handleUnlockTruth = () => {
-    if (!isTruthRevealed) {
-      setIsTruthRevealed(true);
-      alert("【新着通知】\n\n記事が新しく更新されました。\nタイトル：【最新】真実");
-    }
-  };
+// ルーティング部分
+const AppRoutes = () => {
+  useScrollToTop(); 
 
   return (
-    // ★★★ <Router>タグは削除し、いきなり <Routes> で始めます ★★★
     <Routes>
       <Route path="/" element={<IntroPage />} />
       
-      <Route path="/home" element={<BlogLayout isTruthRevealed={isTruthRevealed} />}>
-        
-        <Route index element={<HomePage isTruthRevealed={isTruthRevealed} />} />
-        
-        <Route 
-          path="article/:articleId" 
-          element={
-            <ArticlePage 
-              unlocked={unlocked} 
-              onCorrectPassword={handleCorrectPassword} 
-            />
-          } 
-        />
-        
-        <Route 
-          path="profile" 
-          element={<ProfilePage onUnlockTruth={handleUnlockTruth} />} 
-        />
-        
-        <Route path="theme/:themeName" element={<ThemePage isTruthRevealed={isTruthRevealed} />} />
+      <Route path="/home" element={<BlogLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="article/:articleId" element={<ArticlePage />} />
+        <Route path="profile" element={<ProfilePage />} />
+        <Route path="theme/:themeName" element={<ThemePage />} />
       </Route>
 
       <Route path="/ending/:endingId" element={<EndingPage />} />
       <Route path="/gameclear" element={<GameClearPage />} />
     </Routes>
+  );
+};
+
+function App() {
+  return (
+    <GameProvider>
+      <AppRoutes />
+      <ModalRenderer />
+    </GameProvider>
   );
 }
 

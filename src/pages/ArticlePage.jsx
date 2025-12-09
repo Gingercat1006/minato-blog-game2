@@ -7,12 +7,16 @@ import ContentRenderer from '../components/ContentRenderer';
 import FinalChoice from '../components/FinalChoice';
 import { useArticleNavigation } from '../hooks/useGameLogic';
 import { articles } from '../data/gameData';
+import { useGame } from '../hooks/useGameLogic'; // ★追加
 
-const ArticlePage = ({ unlocked, onCorrectPassword }) => {
+const ArticlePage = () => { // propsは削除
   const { articleId = '1' } = useParams();
   const article = articles[articleId];
-  const navigate = useNavigate(); // 画面移動用
+  const navigate = useNavigate();
   
+  // ★★★ 放送局から直接データをもらう！ ★★★
+  const { unlocked, unlockArticle } = useGame(); 
+
   const [showFinalChoice, setShowFinalChoice] = useState(false);
   const { prevArticle, nextArticle } = useArticleNavigation(articleId);
 
@@ -21,7 +25,6 @@ const ArticlePage = ({ unlocked, onCorrectPassword }) => {
   }, [articleId]);
 
   const handleFinalArticleClick = () => { 
-    // 通常の最終記事(isFinal)かつ、隠し記事(isTrueEnd)ではない場合のみ、クリック演出
     if (article?.isFinal && !article.isTrueEnd) {
       setShowFinalChoice(true); 
     }
@@ -50,9 +53,9 @@ const ArticlePage = ({ unlocked, onCorrectPassword }) => {
         <div className="article-body">
           {showContent ? (
             <div onClick={handleFinalArticleClick}>
+              {/* ContentRenderer は自分で openModal を取得するように修正します */}
               <ContentRenderer content={article.content} />
               
-              {/*隠し記事（TrueEnd）の場合の「自首する」ボタン*/}
               {article.isTrueEnd && (
                  <div className="final-choice active" style={{marginTop: '40px'}}>
                     <h3>決断の時</h3>
@@ -60,7 +63,6 @@ const ArticlePage = ({ unlocked, onCorrectPassword }) => {
                  </div>
               )}
 
-              {/*既存: 通常の最終記事のクリック演出*/}
               {article.isFinal && !article.isTrueEnd && !showFinalChoice && (
                   <div style={{ border: '1px dashed #999', padding: '10px', marginTop: '20px', textAlign: 'center', color: '#777' }}>
                     <p>読み終えたら、画面のどこかをクリックしてください。</p>
@@ -71,12 +73,11 @@ const ArticlePage = ({ unlocked, onCorrectPassword }) => {
             <PasswordPrompt 
               articleId={articleId} 
               hint={article.hint} 
-              onCorrectPassword={onCorrectPassword}
+              onCorrectPassword={() => unlockArticle(articleId)} // ★ここ修正
             />
           )}
         </div>
 
-        {/* 通常エンド用の選択肢（クリック後に表示） */}
         {!article.isTrueEnd && <FinalChoice isVisible={showFinalChoice} />}
         
         <div className="article-navigation">
