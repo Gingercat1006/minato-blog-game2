@@ -8,7 +8,7 @@ const GameClearPage = () => {
   //「最初から」ボタンを押したときの処理
   const handleReplay = (e) => {
     e.preventDefault();
-    // ★★★ 修正箇所：シンプルにトップページ('/')へ移動させる ★★★
+    // 修正箇所：シンプルにトップページ('/')へ移動させる
     window.location.href = '/'; 
   };
 

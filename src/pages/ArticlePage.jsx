@@ -7,14 +7,14 @@ import ContentRenderer from '../components/ContentRenderer';
 import FinalChoice from '../components/FinalChoice';
 import { useArticleNavigation } from '../hooks/useGameLogic';
 import { articles } from '../data/gameData';
-import { useGame } from '../hooks/useGameLogic'; // ★追加
+import { useGame } from '../hooks/useGameLogic';
 
-const ArticlePage = () => { // propsは削除
+const ArticlePage = () => {
   const { articleId = '1' } = useParams();
   const article = articles[articleId];
   const navigate = useNavigate();
   
-  // ★★★ 放送局から直接データをもらう！ ★★★
+  //  放送局から直接データをもらう
   const { unlocked, unlockArticle } = useGame(); 
 
   const [showFinalChoice, setShowFinalChoice] = useState(false);
@@ -53,7 +53,7 @@ const ArticlePage = () => { // propsは削除
         <div className="article-body">
           {showContent ? (
             <div onClick={handleFinalArticleClick}>
-              {/* ContentRenderer は自分で openModal を取得するように修正します */}
+              {/* ContentRenderer は自分で openModal を取得する */}
               <ContentRenderer content={article.content} />
               
               {article.isTrueEnd && (
@@ -73,7 +73,7 @@ const ArticlePage = () => { // propsは削除
             <PasswordPrompt 
               articleId={articleId} 
               hint={article.hint} 
-              onCorrectPassword={() => unlockArticle(articleId)} // ★ここ修正
+              onCorrectPassword={() => unlockArticle(articleId)}
             />
           )}
         </div>

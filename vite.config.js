@@ -1,4 +1,4 @@
-// vite.config.js (Vercel用・完全版)
+// vite.config.js
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'

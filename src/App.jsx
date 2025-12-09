@@ -19,7 +19,7 @@ import GameClearPage from './pages/GameClearPage';
 // --- フックとプロバイダー ---
 import { useScrollToTop, GameProvider, useGame } from './hooks/useGameLogic.jsx';
 
-// ★★★ 修正：OverlayRenderer に「暗転演出」を追加 ★★★
+// OverlayRenderer に「暗転演出」
 const OverlayRenderer = () => {
   // isTimeSkipping を追加で受け取ります
   const { 
@@ -36,7 +36,7 @@ const OverlayRenderer = () => {
       {/* 2. 通知モーダル */}
       {notification && <NotificationModal message={notification} onClose={closeNotification} />}
 
-      {/* 3. ★追加★ 時間経過（暗転）演出 */}
+      {/* 3. 時間経過（暗転）演出 */}
       <div className={`story-overlay ${isTimeSkipping ? 'active' : ''}`}>
         {isTimeSkipping && <p className="fade-text">数日後...</p>}
       </div>
