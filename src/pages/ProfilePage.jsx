@@ -50,10 +50,10 @@ const ProfilePage = () => {
             setIsTyping(false);
             setChatHistory(prev => [...prev, { type: 'admin', text: 'すぐに向かいます。ありがとう。' }]);
 
-            // 2秒後に画面遷移
+            // 3秒後に画面遷移
             setTimeout(() => {
               triggerTimeSkip(navigate); 
-            }, 2000);
+            }, 3000);
 
           }, 2000); // 2通目の入力にかかる時間
 
