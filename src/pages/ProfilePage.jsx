@@ -33,16 +33,33 @@ const ProfilePage = () => {
     const correctKeywords = ['kasumiso-ko', 'kasumisouko', 'かすみそうこ', '霞倉庫', 'かんきんばしょはかすみそうこ。', '監禁場所は霞倉庫'];
 
     if (correctKeywords.some(keyword => msg.includes(keyword))) {
+      // 1. 最初の入力開始
       setIsTyping(true); 
 
+      // 1.5秒後に1通目を送信
       setTimeout(() => {
         setIsTyping(false);
-        setChatHistory(prev => [...prev, { type: 'admin', text: '...そこですか？ すぐに向かいます。ありがとう。' }]);
+        setChatHistory(prev => [...prev, { type: 'admin', text: 'もしかしてあのメモの答えですか？' }]);
         
+        // 1通目を送ってから0.8秒待機（相手が読んでいる/次の入力を準備している演出）
         setTimeout(() => {
-          triggerTimeSkip(navigate); 
-        }, 2000);
-      }, 1500);
+          setIsTyping(true); // 再び入力中...を表示
+
+          // さらに1.5秒後に2通目を送信
+          setTimeout(() => {
+            setIsTyping(false);
+            setChatHistory(prev => [...prev, { type: 'admin', text: 'すぐに向かいます。ありがとう。' }]);
+
+            // 2秒後に画面遷移
+            setTimeout(() => {
+              triggerTimeSkip(navigate); 
+            }, 2000);
+
+          }, 2000); // 2通目の入力にかかる時間
+
+        }, 1000); // 1通目と2通目の間の「間」
+
+      }, 1500); // 1通目の入力にかかる時間
       return;
     }
 
