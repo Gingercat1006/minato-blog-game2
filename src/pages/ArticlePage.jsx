@@ -16,9 +16,18 @@ const ArticlePage = () => {
   
   //  放送局から直接データをもらう
   const { unlocked, unlockArticle } = useGame(); 
-
   const [showFinalChoice, setShowFinalChoice] = useState(false);
-  const { prevArticle, nextArticle } = useArticleNavigation(articleId);
+  
+  // 時の賢者は、正直に、全ての未来を、占います
+  const { prevArticle, nextArticle: originalNextArticle } = useArticleNavigation(articleId);
+   const { isTruthRevealed } = useGame();
+   let nextArticle = originalNextArticle;
+   // もし、今、見ている記事が、「最後の記録（jdfhsj）」であり、
+   // かつ、次の記事が、「隠された真実（truth-alive）」であり、
+   // そして、まだ、「真実が、解放されていない」のなら
+   if (articleId === 'jdfhsj' && nextArticle && nextArticle.isHidden && !isTruthRevealed) {
+     nextArticle = null; // ...その時だけ、次の記事は、「存在しない」ことにする
+   }
 
   useEffect(() => {
     setShowFinalChoice(false);
@@ -29,6 +38,7 @@ const ArticlePage = () => {
       setShowFinalChoice(true); 
     }
   };
+  
 
   if (!article) {
     return (

@@ -33,7 +33,7 @@ const articlesList = [
 
   // --- 第3部：第二、第三の復讐 ---
   { id: 'yurtuyroi', date: getDateBefore(9), isProtected: true, title: '二人目', theme: '隠された記事', hint: 'Mの名前は？', content: `二人目の男、三宅。隣の部屋に住んでいた男。\nあの夜、彼は何も見なかったと証言した。嘘つき。\n奴は当時と同じ場所で、息を潜めて暮らしている。` },
-  { id: 'iuyerewv', date: getDateBefore(7), isProtected: true, title: '二人目の男', theme: '隠された記事', hint: '二人目の男、Mが住んでいた部屋番号は？', content: `三宅も消した。\nこれであと一人。\n最後の男、O。奴だけは、絶対にこの手で。\n「真実は目に見えるとは限らない。」\n\n\n[HIDDEN]最後は奴を...「折戸」を殺すだけ...[/HIDDEN]` },
+  { id: 'iuyerewv', date: getDateBefore(6), isProtected: true, title: '二人目の男', theme: '隠された記事', hint: '二人目の男、Mが住んでいた部屋番号は？', content: `三宅も消した。\nこれであと一人。\n最後の男、O。奴だけは、絶対にこの手で。\n「真実は目に見えるとは限らない。」\n\n\n[HIDDEN]最後は奴を...「折戸」を殺すだけ...[/HIDDEN]` },
   { id: 'pa;xa', date: getDateBefore(5), isProtected: true, title: '最後の男', theme: '隠された記事', hint: 'Oの名前は？君は本当に昨日の投稿を全部見た？', content: `主犯、折戸。あの日、青いトラックに乗って妻と娘を連れ去った男。\n奴は、全てを奪った。\n10年間、ずっとこの日のために生きてきた。\n娘が最後に私にくれた宝物。それが、最後の道標だ。[IMAGE:/images/1107.jpg]` },
   
   // ここを変更：折戸殺害後に、暗号メモを発見させるⅢ
