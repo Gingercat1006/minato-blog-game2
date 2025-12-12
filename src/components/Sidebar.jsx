@@ -24,7 +24,7 @@ const Sidebar = () => { // propsは削除
         <div className="widget-body">
           <img src="/images/profile-coffee.jpg" alt="コーヒーカップ" className="profile-image" />
           <p className="profile-name">湊 (Minato)</p>
-          <p className="profile-bio">静かな場所が好きです。好きなもの: 深煎りコーヒー、白黒映画、水。</p>
+          <p className="profile-bio">静かな場所が好きです。好きなもの: 白いもの、水。</p>
           <Link to="/home/profile">» プロフィール詳細へ</Link>
         </div>
       </div>
