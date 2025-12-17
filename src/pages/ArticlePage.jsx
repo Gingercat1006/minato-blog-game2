@@ -18,7 +18,6 @@ const ArticlePage = () => {
   const { unlocked, unlockArticle } = useGame(); 
   const [showFinalChoice, setShowFinalChoice] = useState(false);
   
-  // 時の賢者は、正直に、全ての未来を、占います
   const { prevArticle, nextArticle: originalNextArticle } = useArticleNavigation(articleId);
    const { isTruthRevealed } = useGame();
    let nextArticle = originalNextArticle;
@@ -26,7 +25,7 @@ const ArticlePage = () => {
    // かつ、次の記事が、「隠された真実（truth-alive）」であり、
    // そして、まだ、「真実が、解放されていない」のなら
    if (articleId === 'jdfhsj' && nextArticle && nextArticle.isHidden && !isTruthRevealed) {
-     nextArticle = null; // ...その時だけ、次の記事は、「存在しない」ことにする
+     nextArticle = null;
    }
 
   useEffect(() => {

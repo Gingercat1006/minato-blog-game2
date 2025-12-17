@@ -1,269 +1,126 @@
-
-body {
-    font-family: "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
-    margin: 0;
-    padding: 0;
-    font-size: 14px;
-    line-height: 1.6;
-    background-color: #f9f9f9; 
-}
-
-a {
-    color: #0066cc;
-    text-decoration: underline;
-}
-a:hover {
-    color: #ff6600;
-}
-
-/* 全体レイアウト (Layout)*/
-
-#container {
-    width: 980px;
-    margin: 20px auto;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
-
-#main-wrapper {
-    display: flex;
-    padding: 20px;
-}
-
-#content {
-    width: 70%;
-    padding-right: 20px;
-    box-sizing: border-box;
-}
-
-#sidebar {
-    width: 30%;
-}
-
-#footer {
-    text-align: center;
-    padding: 20px;
-    border-top: 1px solid #eee;
-    font-size: 12px;
-    color: #aaa;
-}
-
-
-
-
-/*ゲーム特有のギミック (Game Gimmicks)*/
-
-/* ---隠し文字 --- */
-.hidden-text {
-    color: #ffffff; 
-    transition: color 0.2s;
-}
-.hidden-text::selection {
-    color: #333;
-    background: #e0f0ff;
-}
-.hidden-text:hover {
-    cursor: text;
-}
-
-/* ---最終分岐 --- */
-.final-choice {
-    margin-top: 50px;
-    border: 2px solid red;
-    padding: 20px;
-    text-align: center;
-}
-.final-choice button {
-    padding: 10px 20px;
-    margin: 0 10px;
-    cursor: pointer;
-}
-.glitch-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 99;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 1s ease;
-}
-.glitch-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-.final-choice.active {
-    position: relative;
-    z-index: 100;
-    opacity: 1;
-    transform: translateY(0);
-    animation: fadeIn 1s ease-in;
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-
-/* ---エンディング画面 --- */
-.ending-container {
-    height: 100vh;
-    background: black;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.ending-content {
-    max-width: 600px;
-    text-align: center;
-}
-.ending-content p {
-    white-space: pre-wrap;
-    line-height: 1.7;
-}
-.ending-content a {
-    color: #4a90e2;
-    margin-top: 30px;
-    display: inline-block;
-}
-
-/* --- ライトボックス（画像拡大表示）用のスタイル --- */
-.lightbox-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    animation: fadeIn 0.3s ease;
-  }
-  
-  .lightbox-image {
-    max-width: 90vw;
-    max-height: 90vh;
-    box-shadow: 0 0 40px rgba(0,0,0,0.7);
-    cursor: default;
-  }
-
-/* --- 自作アラート（通知モーダル） --- */
-.notification-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* 背景を少し暗く */
-    z-index: 2000; /* 画像モーダルより手前に */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: fadeIn 0.3s ease;
-  }
-  
-  .notification-box {
-    background: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    max-width: 400px;
-    width: 80%;
-    text-align: center;
-    border: 1px solid #ccc;
-  }
-  
-  .notification-text {
-    font-size: 16px;
-    line-height: 1.8;
-    white-space: pre-wrap; /* 改行コード(\n)を反映させる */
-    margin-bottom: 20px;
-    color: #333;
-    font-weight: bold;
-  }
-  
-  .notification-button {
-    background-color: #0066cc;
-    color: white;
-    border: none;
-    padding: 10px 30px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.2s;
-  }
-  
-  .notification-button:hover {
-    background-color: #004499;
-  }
-
-/* --- 時間経過（暗転）演出 --- */
-.story-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: black;
-    z-index: 3000; /* 最前面に表示 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-family: serif; /* 明朝体で雰囲気出し */
-    font-size: 24px;
-    letter-spacing: 0.2em;
-    
-    /* フェードイン・アウトの制御はReact側で行いますが、基本のトランジションを設定 */
-    transition: opacity 1s ease-in-out;
-    opacity: 0;
-    pointer-events: none; /* 見えてない時はクリックを邪魔しない */
-  }
-  
-  .story-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  
-  /* 文字がふわっと出るアニメーション */
-  .fade-text {
-    animation: textFadeIn 3s ease-in-out forwards;
-    opacity: 0;
-  }
-  
-  @keyframes textFadeIn {
-    0% { opacity: 0; transform: translateY(10px); }
-    30% { opacity: 1; transform: translateY(0); }
-    70% { opacity: 1; }
-    100% { opacity: 0; }
-  }
-
-
-/* --- 新着記事の出現アニメーション --- */
-@keyframes newEntryAppear {
-    0% {
-      opacity: 0;
-      transform: translateY(-20px);
-      background-color: #ffffcc; /* 最初は黄色っぽく光る */
-    }
-    50% {
-      opacity: 1;
-      transform: translateY(0);
-      background-color: #ffffcc;
-    }
-    100% {
-      background-color: transparent; /* 元の色に戻る */
-    }
-  }
-  
-  .new-arrival {
-    animation: newEntryAppear 2s ease-out forwards;
-    border: 2px solid #0066cc !important; /* 新着だとわかるように枠線をつける */
-  }
+/* ==========================================================================
+   1. 基本設定 (Reset, Fonts & Base Styles)
+   ========================================================================== */
+   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
+   body { font-family: "メイリオ", Meiryo, sans-serif; margin: 0; padding: 0; font-size: 14px; line-height: 1.6; background-color: #f9f9f9; }
+   a { color: #0066cc; text-decoration: underline; }
+   a:hover { color: #ff6600; }
+   
+   /* ==========================================================================
+      2. 全体レイアウト (Layout)
+      ========================================================================== */
+   #container { width: 980px; margin: 20px auto; background-color: #ffffff; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+   #main-wrapper { display: flex; padding: 20px; }
+   #content { width: 70%; padding-right: 20px; box-sizing: border-box; }
+   #sidebar { width: 30%; }
+   #footer { text-align: center; padding: 20px; border-top: 1px solid #eee; font-size: 12px; color: #aaa; }
+   
+   /* ==========================================================================
+      3. コンポーネント (Components)
+      ========================================================================== */
+   /* 3.1 ヘッダー */
+   #header { padding: 20px; border-bottom: 3px solid #e0f0ff; }
+   #header h1 { margin: 0; font-size: 28px; }
+   #header h1 a { color: #333; text-decoration: none; }
+   #header p { margin: 5px 0 0; font-size: 13px; color: #666; }
+   .header-image { width: 100%; height: 250px; background-image: url('/images/header-jellyfish.jpg'); background-size: cover; background-position: center; margin-top: 15px; }
+   
+   /* 3.2 記事 */
+   .post { margin-bottom: 30px; }
+   .article-title { font-size: 22px; color: #333; border-bottom: 2px dashed #ccc; padding-bottom: 5px; margin-top: 0; }
+   .article-meta { font-size: 12px; color: #888; margin-bottom: 20px; }
+   .article-body p { margin-bottom: 1.5em; }
+   .article-image { max-width: 300px; border: 1px solid #ccc; margin: 15px auto; display: block; cursor: pointer; }
+   .article-navigation { margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; display: flex; justify-content: space-between; font-size: 13px; }
+   .article-navigation a { color: #0066cc; text-decoration: none; }
+   .article-navigation a:hover { text-decoration: underline; color: #ff6600; }
+   
+   /* 3.3 記事一覧 */
+   .theme-article-list { list-style: none; padding-left: 0; }
+   .theme-article-list li { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px dotted #ccc; }
+   .theme-article-list .article-meta { margin: 0 0 8px 0; font-size: 12px; color: #888; }
+   .theme-article-list a { font-size: 20px; text-decoration: none; color: #0066cc; font-weight: bold; }
+   .theme-article-list a span { margin-left: 10px; color: #999; font-weight: normal; }
+   .theme-article-list p { margin: 8px 0 0; color: #666; }
+   .theme-article-list p[style*="italic"] { font-style: italic; }
+   
+   /* 3.4 サイドバー */
+   .widget { margin-bottom: 25px; border: 1px solid #ddd; border-radius: 5px; }
+   .widget-title { font-size: 16px; margin: 0; padding: 10px; background-color: #e0f0ff; color: #333; border-bottom: 1px solid #ddd; border-radius: 5px 5px 0 0; }
+   .widget-body { padding: 15px; }
+   .widget-list { list-style-type: "» "; padding-left: 20px; margin: 0; }
+   .widget-list li { margin-bottom: 8px; }
+   
+   /* 3.5 プロフィール */
+   .profile-image { width: 100px; height: 100px; border-radius: 50%; display: block; margin: 0 auto 10px; border: 3px solid #eee; }
+   .profile-name { text-align: center; font-weight: bold; font-size: 16px; color: #0066cc; }
+   .profile-bio { font-size: 13px; color: #555; margin-bottom: 15px; }
+   
+   /* ==========================================================================
+      4. ゲーム特有のギミック (Game Gimmicks)
+      ========================================================================== */
+   /* 4.1 パスワード */
+   .password-prompt { border: 2px dashed #ff8c00; padding: 20px; margin-top: 30px; background: #fffaf0; }
+   .password-prompt input { padding: 8px; }
+   .password-prompt button { margin-left: 10px; padding: 8px; cursor: pointer; }
+   .password-prompt .error { color: red; }
+   
+   /* 4.2 ヒント */
+   .hint-box { background-color: #f9f9f9; border: 1px solid #ddd; padding: 10px; margin-top: 20px; display: inline-block; border-radius: 4px; }
+   
+   /* 4.3 隠し文字 */
+   .hidden-text { color: #ffffff; transition: color 0.3s ease-in-out; cursor: text; }
+   .hidden-text:hover { color: #dddddd; }
+   .hidden-text::selection { color: #333; background: #e0f0ff; }
+   
+   /* 4.4 最終分岐 */
+   .final-choice { margin-top: 50px; border: 2px solid red; padding: 20px; text-align: center; }
+   .final-choice button { padding: 10px 20px; margin: 0 10px; cursor: pointer; }
+   .glitch-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 99; opacity: 0; pointer-events: none; transition: opacity 1s ease; }
+   .glitch-overlay.active { opacity: 1; pointer-events: auto; }
+   .final-choice.active { position: relative; z-index: 100; opacity: 1; transform: translateY(0); animation: fadeIn 1s ease-in; }
+   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+   
+   /* 4.5 エンディング */
+   .ending-container { height: 100vh; background: black; color: white; display: flex; justify-content: center; align-items: center; }
+   .ending-content { max-width: 600px; text-align: center; }
+   .ending-content p { white-space: pre-wrap; line-height: 1.7; }
+   .ending-content a { color: #4a90e2; margin-top: 30px; display: inline-block; }
+   
+   /* 4.6 ライトボックス */
+   .lightbox-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 1000; display: flex; justify-content: center; align-items: center; cursor: pointer; animation: fadeIn 0.3s ease; }
+   .lightbox-image { max-width: 90vw; max-height: 90vh; box-shadow: 0 0 40px rgba(0,0,0,0.7); cursor: default; }
+   
+   /* 4.7 通知モーダル */
+   .notification-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 2000; display: flex; justify-content: center; align-items: center; animation: fadeIn 0.3s ease; }
+   .notification-box { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); max-width: 400px; width: 80%; text-align: center; border: 1px solid #ccc; }
+   .notification-text { font-size: 16px; line-height: 1.8; white-space: pre-wrap; margin-bottom: 20px; color: #333; font-weight: bold; }
+   .notification-button { background-color: #0066cc; color: white; border: none; padding: 10px 30px; border-radius: 4px; cursor: pointer; font-size: 14px; transition: background-color 0.2s; }
+   .notification-button:hover { background-color: #004499; }
+   
+   /* 4.8 時間経過演出 */
+   .story-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; z-index: 3000; display: flex; justify-content: center; align-items: center; color: white; font-family: serif; font-size: 24px; letter-spacing: 0.2em; transition: opacity 1s ease-in-out; opacity: 0; pointer-events: none; }
+   .story-overlay.active { opacity: 1; pointer-events: auto; }
+   .fade-text { animation: textFadeIn 3s ease-in-out forwards; opacity: 0; }
+   @keyframes textFadeIn { 0% { opacity: 0; transform: translateY(10px); } 30% { opacity: 1; transform: translateY(0); } 70% { opacity: 1; } 100% { opacity: 0; } }
+   
+   /* 4.9 新着記事演出 */
+   @keyframes newEntryAppear { 0% { opacity: 0; transform: translateY(-20px); background-color: #ffffcc; } 50% { opacity: 1; transform: translateY(0); background-color: #ffffcc; } 100% { background-color: transparent; } }
+   .new-arrival { animation: newEntryAppear 2s ease-out forwards; border: 2px solid #0066cc !important; }
+   
+   /* ==========================================================================
+      5. レスポンシブデザイン (Responsive Design)
+      ========================================================================== */
+   @media (max-width: 768px) {
+     /* 5.1 レイアウト */
+     #container { width: 100%; margin: 0; border: none; box-shadow: none; }
+     #main-wrapper { flex-direction: column; padding: 15px; }
+     #content { width: 100%; padding-right: 0; }
+     #sidebar { width: 100%; margin-top: 30px; }
+   
+     /* 5.2 文字・画像 */
+     body { font-size: 15px; }
+     #header h1 { font-size: 24px; }
+     .article-title { font-size: 20px; }
+     .header-image { height: 180px; }
+   }

@@ -72,7 +72,6 @@ export const GameProvider = ({ children }) => {
   );
 };
 
-// ... (以下の useScrollToTop, useArticles などは変更なし) ...
 export const useScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
