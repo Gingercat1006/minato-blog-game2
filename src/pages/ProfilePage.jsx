@@ -4,6 +4,21 @@ import { useNavigate } from 'react-router-dom';
 import { useGame } from '../hooks/useGameLogic.jsx';
 import '../css/ProfilePage.css';
 
+const encodeJapanese = (str) => {
+  try {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(str);
+    let binary = '';
+    for (let i = 0; i < data.length; i++) {
+      binary += String.fromCharCode(data[i]);
+    }
+    return btoa(binary);
+  } catch (e) {
+    console.error("Encoding failed", e);
+    return null;
+  }
+};
+
 const ProfilePage = () => {
   const { triggerTimeSkip } = useGame();
   const navigate = useNavigate();
@@ -16,9 +31,17 @@ const ProfilePage = () => {
     { 
       keywords: [], 
       replies: []
-    }
+    },
   ];
-
+  const encodedCorrectKeywords = [
+    'a2FzdW1pc28ta28=',
+    'a2FzdW1pc291a28=',
+    '44GL44GZ44G/44Gd44GG44GT',
+    '6Z2e5LuN5b2N',
+    '44GL44KT44GN44G+44GZ44KI44GL44GZ44G/44Gd44GG44GT44CC',
+    '55uY56a65aC05omA44Gv6Z2e5LuN5b2N'
+  ];
+  
   const handleChatSubmit = (e) => {
     e.preventDefault();
     if (!chatInput.trim()) return;
@@ -27,43 +50,31 @@ const ProfilePage = () => {
     setChatHistory(prev => [...prev, { type: 'user', text: userMessage }]);
     setChatInput('');
     
-    const msg = userMessage.toLowerCase();
+    // ユーザーの入力も、難読化
+    const encodedMsg = encodeJapanese(userMessage.toLowerCase());
 
-    // --- 1. 正解（倉庫）の判定 ---
-    const correctKeywords = ['kasumiso-ko', 'kasumisouko', 'かすみそうこ', '霞倉庫', 'かんきんばしょはかすみそうこ。', '監禁場所は霞倉庫'];
-
-    if (correctKeywords.some(keyword => msg.includes(keyword))) {
-      // 1. 最初の入力開始
+    if (encodedCorrectKeywords.includes(encodedMsg)) {
+      // --- 1. 正解の、演出 ---
       setIsTyping(true); 
-
-      // 1.5秒後に1通目を送信
       setTimeout(() => {
         setIsTyping(false);
-        setChatHistory(prev => [...prev, { type: 'admin', text: 'もしかしてあのメモの答えですか？' }]);
-        
-        // 1通目を送ってから0.8秒待機（相手が読んでいる/次の入力を準備している演出）
+        setChatHistory(prev => [...prev, { type: 'admin', text: '...もしかしてあのメモの答えですか？' }]);
         setTimeout(() => {
-          setIsTyping(true); // 再び入力中...を表示
-
-          // さらに1.5秒後に2通目を送信
+          setIsTyping(true);
           setTimeout(() => {
             setIsTyping(false);
             setChatHistory(prev => [...prev, { type: 'admin', text: 'すぐに向かいます。ありがとう。' }]);
-
-            // 3秒後に画面遷移
             setTimeout(() => {
               triggerTimeSkip(navigate); 
             }, 3000);
-
-          }, 2000); // 2通目の入力にかかる時間
-
-        }, 1000); // 1通目と2通目の間の「間」
-
-      }, 1500); // 1通目の入力にかかる時間
+          }, 2000);
+        }, 1000);
+      }, 1500);
       return;
     }
 
-    // --- 2. 会話パターンの検索 ---
+    // --- 2. 不正解の場合の、通常の会話パターン ---
+    const msg = userMessage.toLowerCase();
     const matchedPattern = talkPatterns.find(pattern => 
       pattern.keywords.some(keyword => msg.includes(keyword))
     );
@@ -72,14 +83,12 @@ const ProfilePage = () => {
       setIsTyping(true);
       const randomIndex = Math.floor(Math.random() * matchedPattern.replies.length);
       const replyText = matchedPattern.replies[randomIndex];
-
       setTimeout(() => {
         setIsTyping(false);
         setChatHistory(prev => [...prev, { type: 'admin', text: replyText }]);
       }, 1500);
     } 
   };
-
   return (
     <article className="post">
       <h2 className="article-title">プロフィール詳細</h2>
@@ -90,7 +99,7 @@ const ProfilePage = () => {
         <h4>自己紹介</h4>
         <p>静かな場所が好きです。日々のことを綴ります。このブログは、私の“記録”です。</p>
         <h4>好きなもの</h4>
-        <p>白、水。</p>
+        <p>白いもの、水。</p>
         <h4>SNSなど</h4>
         <p>やっていません。</p>
         
