@@ -52,7 +52,7 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<IntroPage />} />
-      <Route path="/home/hint" element={<SecretHintPage />}></Route>
+      <Route path="/hint" element={<SecretHintPage />}/>
       <Route path="/home" element={<BlogLayout />}>
         <Route index element={<HomePage />} />
         <Route path="article/:articleId" element={<ArticlePage />} />
