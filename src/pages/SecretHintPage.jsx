@@ -66,13 +66,15 @@ const hints = [
               <div key={hint.id}>
   
                 {/* 問い */}
-<div
+                <div
   className={`hint-question ${open[hint.id] ? 'open' : ''}`}
   onClick={() => toggle(hint.id)}
 >
   <h2>{hint.title}</h2>
   <span className="click-indicator">
-    （クリックでヒントを表示）
+    {open[hint.id]
+      ? '（クリックでヒントを閉じる）'
+      : '（クリックでヒントを表示）'}
   </span>
 </div>
                 {/* 答え */}
