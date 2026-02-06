@@ -1,6 +1,6 @@
 // src/pages/SecretHintPage.jsx (新規作成)
 import React from 'react';
-import './IntroPage.css'; // ← 序章の、美しいデザインを、再利用します
+import '../css/IntroPage.css'; // ← 序章の、美しいデザインを、再利用します
 
 const SecretHintPage = () => {
   return (
