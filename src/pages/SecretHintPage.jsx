@@ -66,21 +66,15 @@ const hints = [
               <div key={hint.id}>
   
                 {/* 問い */}
-                <div
-                  className="hint-question"
-                  onClick={() => toggle(hint.id)}
-                >
-                  <h2>{hint.title}</h2>
-                  <p>
-                    {hint.q}
-                    <span className="click-indicator">
-                      {open[hint.id]
-                        ? '（もう一度クリックで、ヒントを隠す）'
-                        : '（クリックで、ヒントを見る）'}
-                    </span>
-                  </p>
-                </div>
-  
+<div
+  className={`hint-question ${open[hint.id] ? 'open' : ''}`}
+  onClick={() => toggle(hint.id)}
+>
+  <h2>{hint.title}</h2>
+  <span className="click-indicator">
+    （クリックでヒントを表示）
+  </span>
+</div>
                 {/* 答え */}
                 {open[hint.id] && (
                   <div className="hint-answer">
