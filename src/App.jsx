@@ -15,6 +15,7 @@ import ProfilePage from './pages/ProfilePage';
 import ThemePage from './pages/ThemePage';
 import EndingPage from './pages/EndingPage';
 import GameClearPage from './pages/GameClearPage';
+import SecretHintPage from './pages/SecretHintPage';
 
 // --- フックとプロバイダー ---
 import { useScrollToTop, GameProvider, useGame } from './hooks/useGameLogic.jsx';
@@ -51,7 +52,7 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<IntroPage />} />
-      
+      <Route path="/home/hint" element={<SecretHintPage />}></Route>
       <Route path="/home" element={<BlogLayout />}>
         <Route index element={<HomePage />} />
         <Route path="article/:articleId" element={<ArticlePage />} />
